@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!-- saved from url=(0026)http://192.168.0.101/reset -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./Smarter 28 RESET_files/w3.css">
+        <title>Smarter 28 RESET</title>
+        <style>
+            svg {
+                padding: 16px;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 80%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="w3-top">
+            <div class="w3-bar w3-green w3-card">
+                <a class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" href="javascript:void(0)" onclick="onClick()">MENU</a>
+            </div>
+        </div>
+        <div id="navMenu" class="w3-bar-block w3-white w3-hide w3-top" style="margin-top: 46px;">
+            <a href="http://192.168.0.101/" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">INÍCIO</a>
+            <a href="http://192.168.0.101/events" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">LOG DE EVENTOS</a>
+            <a href="http://192.168.0.101/realtime" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">LOG DE TEMPO REAL</a>
+            <a href="http://192.168.0.101/monitor" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">MONITORAMENTO</a>
+            <a href="http://192.168.0.101/limits" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">LIMITES</a>
+            <a href="http://192.168.0.101/update" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">ATUALIZAÇÃO DE FIRMWARE</a>
+            <a href="http://192.168.0.101/reset" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">REINICIAR</a>
+            <div class="w3-dropdown-hover">
+                <button class="w3-padding-large w3-button" title="More">CONFIGURAÇÕES</button>
+                <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                    <a href="http://192.168.0.101/conn-config" class="w3-bar-item w3-button w3-hover-light-green" onclick="onClick()">Tipo de conexão</a>
+                    <a href="http://192.168.0.101/ocpp-config" class="w3-bar-item w3-button w3-hover-light-green" onclick="onClick()">Servidor OCPP</a>
+                    <a href="http://192.168.0.101/general-config" class="w3-bar-item w3-button w3-hover-light-green" onclick="onClick()">Geral</a>
+                    <a href="http://192.168.0.101/balancer-config" class="w3-bar-item w3-button w3-hover-light-green" onclick="onClick()">Balanceador</a>
+                </div>
+            </div>
+        </div>
+        <div class="w3-content" style="max-width: 2000px; margin-top: 46px;">
+            <header class="w3-container w3-dark-grey">
+                <h5>Reiniciar</h5>
+            </header>
+            <div class="w3-container w3-padding-16">
+                <div>Após a reinicialização, será necessário reconectar ao hotspot de configuração.</div>
+                <button id="reset-btn" class="w3-grey w3-hover-green w3-border-0 w3-padding-small w3-margin w3-round-small" onclick="reset();">Reiniciar</button>
+            </div>
+        </div>
+    
+    <script>
+        window.onload = function () {
+            fetch();
+        };
+
+        function onClick() {
+            var x = document.getElementById("navMenu");
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else {
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+        function reset() {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("GET", "reset-fetch", true);
+            xmlhttp.send();
+            document.getElementById("reset-btn").disabled = true;
+        }
+        function fetch() {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4) {
+                    if (this.status == 200) {
+                        var jsonObject = JSON.parse(this.responseText);
+
+                        document.title = `Smarter ${jsonObject.uid} RESET`
+                    }
+                }
+            };
+            xmlhttp.open("GET", "home-fetch", true);
+            xmlhttp.send();
+        }
+    </script>
+
+</body></html>

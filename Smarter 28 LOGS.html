@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<!-- saved from url=(0029)http://192.168.0.101/realtime -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./Smarter 28 LOGS_files/w3.css">
+        <link rel="stylesheet" href="./Smarter 28 LOGS_files/custom.css">
+        <title>Smarter 28 LOGS</title>
+    </head>
+    <body>
+        <div class="w3-top">
+            <div class="w3-bar w3-green w3-card">
+                <a class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" href="javascript:void(0)" onclick="onClick()">MENU</a>
+                <a class="w3-right w3-show w3-padding-large" id="timerClock" style="color: black;font-weight: bold;">21/02/2024_14:24:39</a>
+            </div>
+        </div>
+        <div id="navMenu" class="w3-bar-block w3-white w3-hide w3-top" style="margin-top: 46px;">
+            <a href="http://192.168.0.101/" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">INÍCIO</a>
+            <a href="http://192.168.0.101/events" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">LOG DE EVENTOS</a>
+            <a href="http://192.168.0.101/realtime" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">LOG DE TEMPO REAL</a>
+            <a href="http://192.168.0.101/monitor" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">MONITORAMENTO</a>
+            <a href="http://192.168.0.101/limits" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">LIMITES</a>
+            <a href="http://192.168.0.101/update" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">ATUALIZAÇÃO DE FIRMWARE</a>
+            <a href="http://192.168.0.101/reset" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">REINICIAR</a>
+            <div class="w3-dropdown-hover">
+                <button class="w3-padding-large w3-button w3-white w3-hover-light-green" title="More">CONFIGURAÇÕES</button>
+                <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                    <a href="http://192.168.0.101/conn-config" class="w3-bar-item w3-button w3-hover-light-green" onclick="onClick()">Tipo de conexão</a>
+                    <a href="http://192.168.0.101/ocpp-config" class="w3-bar-item w3-button w3-hover-light-green" onclick="onClick()">Servidor OCPP</a>
+                    <a href="http://192.168.0.101/general-config" class="w3-bar-item w3-button w3-hover-light-green" onclick="onClick()">Geral</a>
+                    <a href="http://192.168.0.101/balancer-config" class="w3-bar-item w3-button w3-hover-light-green" onclick="onClick()">Balanceador</a>
+                </div>
+            </div>
+        </div>
+        <div class="w3-content" style="max-width: 2000px; margin-top: 46px;">
+            <div id="loading" class="loader" style="display: none;"></div>
+            <div id="main" style="">
+                <table id="tableRealtime" class="w3-table w3-bordered w3-striped w3-border w3-hoverable" style="display: block;">
+                
+                <tbody><tr><td style="width: 200px;">21/02/2024_14:23:05</td><td style="width: 170px;">STM32</td><td style="width: 70px;">INFO</td><td>Active   Power  -&gt; F1:     0.00   -   F2:     0.00   -   F3:     0.00
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:23:05</td><td style="width: 170px;">STM32</td><td style="width: 70px;">INFO</td><td>current         -&gt; F1:     0.00   -   F2:     0.00   -   F3:     0.00
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:23:05</td><td style="width: 170px;">STM32</td><td style="width: 70px;">INFO</td><td>Voltage         -&gt; F1:     0.00   -   F2:     0.00   -   F3:     0.00
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:23:05</td><td style="width: 170px;">STM32</td><td style="width: 70px;">INFO</td><td>Epoch: causeOfPowerOffStm32: 14 | countOfPowerOffStm32: 378
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:23:05</td><td style="width: 170px;">STM32</td><td style="width: 70px;">INFO</td><td>--------------------- Receive Energys ------------------------------------------------------
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:23:05</td><td style="width: 170px;">STM32</td><td style="width: 70px;">INFO</td><td>CP Carregador ---&gt;&gt;&gt; Duty: 3 - Frequnecy: 1001 - Voltage: 1.47 - Current: 0 - State: E
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:23:05</td><td style="width: 170px;">STM32</td><td style="width: 70px;">INFO</td><td>CP Car        ---&gt;&gt;&gt; Duty: 10 - Frequnecy: 1000 - Voltage: 11.73 - Current: 6 - State: A
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:23:05</td><td style="width: 170px;">STM32</td><td style="width: 70px;">INFO</td><td>---&gt;&gt;&gt; causeOfPowerOffStm32: 14 | countOfPowerOffStm32: 378 | firmwareVersionStm32: 0.0.1 &lt;&lt;&lt;---
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:23:05</td><td style="width: 170px;">STM32</td><td style="width: 70px;">INFO</td><td>--------------------- Receive Data ---------------------------------------------------------
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:57</td><td style="width: 170px;">BALANCER_MANAGER</td><td style="width: 70px;">DEBUG</td><td>Create message to send: {"uid":"28","id":"A_DEFINIR_28","fw":"V1.2.8_BETA","limit":6,"type":"adv","currentA":0,"currentB":0,"currentC":0}
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:47</td><td style="width: 170px;">BALANCER_MANAGER</td><td style="width: 70px;">DEBUG</td><td>Create message to send: {"uid":"28","id":"A_DEFINIR_28","fw":"V1.2.8_BETA","limit":6,"type":"adv","currentA":0,"currentB":0,"currentC":0}
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:37</td><td style="width: 170px;">BALANCER_MANAGER</td><td style="width: 70px;">DEBUG</td><td>Create message to send: {"uid":"28","id":"A_DEFINIR_28","fw":"V1.2.8_BETA","limit":6,"type":"adv","currentA":0,"currentB":0,"currentC":0}
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:27</td><td style="width: 170px;">BALANCER_MANAGER</td><td style="width: 70px;">DEBUG</td><td>Create message to send: {"uid":"28","id":"A_DEFINIR_28","fw":"V1.2.8_BETA","limit":6,"type":"adv","currentA":0,"currentB":0,"currentC":0}
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:17</td><td style="width: 170px;">BALANCER_MANAGER</td><td style="width: 70px;">DEBUG</td><td>Create message to send: {"uid":"28","id":"A_DEFINIR_28","fw":"V1.2.8_BETA","limit":6,"type":"adv","currentA":0,"currentB":0,"currentC":0}
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:12</td><td style="width: 170px;">WEB_SOCKET</td><td style="width: 70px;">DEBUG</td><td>Got pong
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:11</td><td style="width: 170px;">WEB_SOCKET</td><td style="width: 70px;">DEBUG</td><td>Sent ping
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:07</td><td style="width: 170px;">BALANCER_MANAGER</td><td style="width: 70px;">DEBUG</td><td>Create message to send: {"uid":"28","id":"A_DEFINIR_28","fw":"V1.2.8_BETA","limit":6,"type":"adv","currentA":0,"currentB":0,"currentC":0}
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:07</td><td style="width: 170px;">BALANCER_MANAGER</td><td style="width: 70px;">DEBUG</td><td>Keeping UDP alive...
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:06</td><td style="width: 170px;">OCPP</td><td style="width: 70px;">DEBUG</td><td>Operation Data Transfer -&gt; No items to send.
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:06</td><td style="width: 170px;">OCPP</td><td style="width: 70px;">DEBUG</td><td>Operation Data Transfer -&gt; Data transfer interval got hit
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:06</td><td style="width: 170px;">OCPP</td><td style="width: 70px;">INFO</td><td>Last OCPP RX timestamp set to 2024-02-21, 17:22:06
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:06</td><td style="width: 170px;">OCPP</td><td style="width: 70px;">DEBUG</td><td>Process Heartbeat.Conf -&gt; accepted!
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:06</td><td style="width: 170px;">OCPP</td><td style="width: 70px;">INFO</td><td>RTC: 2024-02-21, 17:22:06
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:06</td><td style="width: 170px;">OCPP</td><td style="width: 70px;">INFO</td><td>Saved: 2024-02-21, 17:22:06
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:06</td><td style="width: 170px;">OCPP</td><td style="width: 70px;">INFO</td><td>Saved epoch: 1708536126, RTC: 1708536126
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:06</td><td style="width: 170px;">WEB_SOCKET</td><td style="width: 70px;">DEBUG</td><td>Got text: [3,"531531543",{"currentTime":"2024-02-21T17:22:06.536Z"}]
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:05</td><td style="width: 170px;">OCPP</td><td style="width: 70px;">INFO</td><td>Last OCPP TX timestamp set to 2024-02-21, 17:22:05
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:05</td><td style="width: 170px;">OCPP</td><td style="width: 70px;">DEBUG</td><td>Send requirement: [2,"531531543","Heartbeat",{}]
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:05</td><td style="width: 170px;">OCPP</td><td style="width: 70px;">INFO</td><td>Created Heartbeat.Req -&gt; {}
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:05</td><td style="width: 170px;">OCPP</td><td style="width: 70px;">DEBUG</td><td>Operation Heartbeat -&gt; Trigged
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:05</td><td style="width: 170px;">STM32</td><td style="width: 70px;">INFO</td><td>Phase 3 --&gt;&gt; vVoffset1: 1.51466942 | vVoffset2: 0.00 | iVoffset1: 1.51448083 | iVoffset1: 0.00 | vGains: 1.06 | iGain: 1.03 | phGain: 0.00 | pGain: 0.00
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:05</td><td style="width: 170px;">STM32</td><td style="width: 70px;">INFO</td><td>Phase 2 --&gt;&gt; vVoffset1: 1.51357424 | vVoffset2: 0.00 | iVoffset1: 1.51428998 | iVoffset1: 0.00 | vGains: 1.06 | iGain: 1.03 | phGain: 0.00 | pGain: 0.00
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:05</td><td style="width: 170px;">STM32</td><td style="width: 70px;">INFO</td><td>Phase 1 --&gt;&gt; vVoffset1: 1.51528358 | vVoffset2: 0.00 | iVoffset1: 1.51226795 | iVoffset1: 0.00 | vGains: 1.06 | iGain: 1.03 | phGain: 0.00 | pGain: 0.00
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:05</td><td style="width: 170px;">STM32</td><td style="width: 70px;">INFO</td><td>--------------------- Receive Phase Calibration --------------------------------------------
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:05</td><td style="width: 170px;">STM32</td><td style="width: 70px;">INFO</td><td>CP_STATE_E --&gt;&gt; Wanted : 0 | Current : 0
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:05</td><td style="width: 170px;">STM32</td><td style="width: 70px;">INFO</td><td>CP_STATE_D --&gt;&gt; Wanted : 0 | Current : 0
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:05</td><td style="width: 170px;">STM32</td><td style="width: 70px;">INFO</td><td>CP_STATE_C --&gt;&gt; Wanted : 0 | Current : 0
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:05</td><td style="width: 170px;">STM32</td><td style="width: 70px;">INFO</td><td>CP_STATE_B --&gt;&gt; Wanted : 0 | Current : 0
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:05</td><td style="width: 170px;">STM32</td><td style="width: 70px;">INFO</td><td>Relay -&gt; Wanted : 1 | Current : 1
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:05</td><td style="width: 170px;">STM32</td><td style="width: 70px;">INFO</td><td>--------------------- Receive GPIO State ---------------------------------------------------
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:05</td><td style="width: 170px;">STM32</td><td style="width: 70px;">INFO</td><td>Energy   -&gt;&gt; Active:   239.97   -   Apparent:   266.45   -   Reactive:    95.65
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:05</td><td style="width: 170px;">STM32</td><td style="width: 70px;">INFO</td><td>Power    -&gt;&gt; Active:     0.00   -   Apparent:     0.00   -   Reactive:     0.00
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:05</td><td style="width: 170px;">STM32</td><td style="width: 70px;">INFO</td><td>--------------------- Receive Total Power and Energy ------------------------------------------------------
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:05</td><td style="width: 170px;">STM32</td><td style="width: 70px;">INFO</td><td>Power Factor    -&gt; F1:    0.000   -   F2:    0.000   -   F3:    0.000
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:05</td><td style="width: 170px;">STM32</td><td style="width: 70px;">INFO</td><td>Reactive Energy -&gt; F1:    39.00   -   F2:    28.50   -   F3:    28.15
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:05</td><td style="width: 170px;">STM32</td><td style="width: 70px;">INFO</td><td>Apparent Energy -&gt; F1:   123.22   -   F2:    71.47   -   F3:    71.76
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:05</td><td style="width: 170px;">STM32</td><td style="width: 70px;">INFO</td><td>Active   Energy -&gt; F1:   114.02   -   F2:    62.44   -   F3:    63.50
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:05</td><td style="width: 170px;">STM32</td><td style="width: 70px;">INFO</td><td>Reactive Power  -&gt; F1:     0.00   -   F2:     0.00   -   F3:     0.00
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:05</td><td style="width: 170px;">STM32</td><td style="width: 70px;">INFO</td><td>Apparent Power  -&gt; F1:     0.00   -   F2:     0.00   -   F3:     0.00
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:05</td><td style="width: 170px;">STM32</td><td style="width: 70px;">INFO</td><td>Active   Power  -&gt; F1:     0.00   -   F2:     0.00   -   F3:     0.00
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:05</td><td style="width: 170px;">STM32</td><td style="width: 70px;">INFO</td><td>current         -&gt; F1:     0.00   -   F2:     0.00   -   F3:     0.00
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:05</td><td style="width: 170px;">STM32</td><td style="width: 70px;">INFO</td><td>Voltage         -&gt; F1:     0.00   -   F2:     0.00   -   F3:     0.00
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:05</td><td style="width: 170px;">STM32</td><td style="width: 70px;">INFO</td><td>Epoch: causeOfPowerOffStm32: 14 | countOfPowerOffStm32: 378
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:05</td><td style="width: 170px;">STM32</td><td style="width: 70px;">INFO</td><td>--------------------- Receive Energys ------------------------------------------------------
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:05</td><td style="width: 170px;">STM32</td><td style="width: 70px;">INFO</td><td>CP Carregador ---&gt;&gt;&gt; Duty: 3 - Frequnecy: 1001 - Voltage: 1.47 - Current: 0 - State: E
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:05</td><td style="width: 170px;">STM32</td><td style="width: 70px;">INFO</td><td>CP Car        ---&gt;&gt;&gt; Duty: 10 - Frequnecy: 1000 - Voltage: 11.73 - Current: 6 - State: A
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:05</td><td style="width: 170px;">STM32</td><td style="width: 70px;">INFO</td><td>---&gt;&gt;&gt; causeOfPowerOffStm32: 14 | countOfPowerOffStm32: 378 | firmwareVersionStm32: 0.0.1 &lt;&lt;&lt;---
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:22:05</td><td style="width: 170px;">STM32</td><td style="width: 70px;">INFO</td><td>--------------------- Receive Data ---------------------------------------------------------
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:21:57</td><td style="width: 170px;">BALANCER_MANAGER</td><td style="width: 70px;">DEBUG</td><td>Create message to send: {"uid":"28","id":"A_DEFINIR_28","fw":"V1.2.8_BETA","limit":6,"type":"adv","currentA":0,"currentB":0,"currentC":0}
+</td></tr><tr><td style="width: 200px;">21/02/2024_14:21:47</td><td style="width: 170px;">BALANCER_MANAGER</td><td style="width: 70px;">DEBUG</td><td>Create message to send: {"uid":"28","id":"A_DEFINIR_28","fw":"V1.2.8_BETA","limit":6,"type":"adv","currentA":0,"currentB":0,"currentC":0}
+</td></tr></tbody></table>
+                <div id="page-bar" class="w3-bar w3-white w3-card w3-bottom" style="display: block;">
+                    <a class="w3-bar-item w3-button w3-padding-large" href="javascript:void(0)" onclick="toggleOptions()">OPÇÕES</a>
+                    <div id="optMenu" class="w3-bar-block w3-light-grey w3-hide w3-bottom" style="margin-bottom: 46px;">
+                        <header class="w3-container w3-dark-grey">
+                            <h5>Histórico</h5>
+                        </header>
+                        <div class="w3-margin w3-row">
+                            <div class="w3-col m4 l4">
+                                <input type="radio" id="realtimeLogHistoric1" name="realtimeLogHistoric" value="1000">
+                                <label for="realtimeLogHistoric1">1000</label>
+                            </div>
+                            <div class="w3-col m4 l4">
+                                <input type="radio" id="realtimeLogHistoric2" name="realtimeLogHistoric" value="10000">
+                                <label for="realtimeLogHistoric2">10000</label>
+                            </div>
+                            <div class="w3-col m4 l4">
+                                <input type="radio" id="realtimeLogHistoric3" name="realtimeLogHistoric" value="100000">
+                                <label for="realtimeLogHistoric3">100000</label>
+                            </div>
+                        </div>
+
+                        <header class="w3-container w3-dark-grey">
+                            <h5>Filtro de Módulos</h5>
+                        </header>
+                        <div class="w3-margin w3-row">
+                            <div class="w3-col m4 l4">
+                                <input type="checkbox" id="realtimeLogModule1" name="moduleFilter" value="MAIN">
+                                <label for="realtimeLogModule1">MAIN</label>
+                            </div>
+                            <div class="w3-col m4 l4">
+                                <input type="checkbox" id="realtimeLogModule2" name="moduleFilter" value="EEPROM">
+                                <label for="realtimeLogModule2">EEPROM</label>
+                            </div>
+
+                            <div class="w3-col m4 l4">
+                                <input type="checkbox" id="realtimeLogModule3" name="moduleFilter" value="STM32">
+                                <label for="realtimeLogModule3">STM32</label>
+                            </div>
+                            <div class="w3-col m4 l4">
+                                <input type="checkbox" id="realtimeLogModule4" name="moduleFilter" value="CONTROL_PILOT">
+                                <label for="realtimeLogModule4">CONTROL_PILOT</label>
+                            </div>
+
+                            <div class="w3-col m4 l4">
+                                <input type="checkbox" id="realtimeLogModule5" name="moduleFilter" value="WEB_SOCKET">
+                                <label for="realtimeLogModule5">WEB_SOCKET</label>
+                            </div>
+                            <div class="w3-col m4 l4">
+                                <input type="checkbox" id="realtimeLogModule6" name="moduleFilter" value="BALANCER_MANAGER">
+                                <label for="realtimeLogModule6">BALANCER_MANAGER</label>
+                            </div>
+
+                            <div class="w3-col m4 l4">
+                                <input type="checkbox" id="realtimeLogModule7" name="moduleFilter" value="OCPP">
+                                <label for="realtimeLogModule7">OCPP</label>
+                            </div>
+
+                            <div class="w3-col m4 l4">
+                                <input type="checkbox" id="realtimeLogModule8" name="moduleFilter" value="SMART_CHARGING">
+                                <label for="realtimeLogModule8">SMART_CHARGING</label>
+                            </div>                     
+                        </div>
+
+                        <header class="w3-container w3-dark-grey">
+                            <h5>Filtro de Tipos</h5>
+                        </header>
+                        <div class="w3-margin w3-row">
+                            <div class="w3-col m4 l4">
+                                <input type="checkbox" id="realtimeLogType1" value="INFO">
+                                <label for="realtimeLogType1">INFO</label>
+                            </div>
+                            <div class="w3-col m4 l4">
+                                <input type="checkbox" id="realtimeLogType2" value="DEBUG">
+                                <label for="realtimeLogType2">DEBUG</label>
+                            </div>
+                            <div class="w3-col m4 l4">
+                                <input type="checkbox" id="realtimeLogType3" value="WARNING">
+                                <label for="realtimeLogType3">WARNING</label>
+                            </div>
+                        </div>
+
+                        <button id="save-btn" class="w3-btn w3-block w3-green w3-large" onclick="apply();">Aplicar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    <script>
+        lastLogTimestamp = 0;
+        let currentTimestamp = 0;
+        let connected = -1;
+        
+        historySize = 50;
+        logFiltersModule = [];//lista dos modulos que não devem serem exibidos
+        logFiltersType = [];//lista dos tipos de log que não devem serem exibidos
+
+        
+
+        window.onload = function(){
+            var logCheckbox = null
+            var counter = 0;
+            while((logCheckbox = document.getElementById(`realtimeLogModule${++counter}`)) != null){
+                logCheckbox.checked = true;
+            }
+
+            counter = 0;
+            while((logCheckbox = document.getElementById(`realtimeLogType${++counter}`)) != null){
+                logCheckbox.checked = true;
+            }
+
+            counter = 0;
+            while((logCheckbox = document.getElementById(`realtimeLogHistoric${++counter}`)) != null){
+                if(counter == 1){
+                    logCheckbox.checked = true;
+                }else{
+                    logCheckbox.checked = false;
+                }
+            }
+
+            apply();
+            toggleOptions();
+
+            fetch();
+
+            setInterval(updateClock, 1000);
+        }
+
+        function epochToLocale(epochValue){
+            var datetime = new Date(epochValue * 1000);
+
+            var parseTimeValue = function(value){
+                return ((value < 10) ? "0" : "") + value;
+            }
+
+            var ano = parseTimeValue(datetime.getFullYear());
+            var mes = parseTimeValue(datetime.getMonth() + 1);
+            var dia = parseTimeValue(datetime.getDate());
+
+            var hora = parseTimeValue(datetime.getHours());
+            var minuto = parseTimeValue(datetime.getMinutes());
+            var segundo = parseTimeValue(datetime.getSeconds());
+            
+            return `${dia}/${mes}/${ano} ${hora}:${minuto}:${segundo}`
+            // return `${ano}/${mes}/${dia} ${hora}:${minuto}:${segundo}`
+        }
+
+        function updateClock(){
+            if(currentTimestamp != undefined){
+                currentTimestamp += 1;
+                document.getElementById("timerClock").innerHTML = epochToLocale(currentTimestamp + 946684800);
+            }
+        }
+
+        function apply() {
+            var logCheckbox = null
+            var counter = 0;
+
+            logFiltersModule = [];
+            logFiltersType = [];
+
+            while((logCheckbox = document.getElementById(`realtimeLogModule${++counter}`)) != null){
+                if(logCheckbox.checked == true){
+                    logFiltersModule.push(logCheckbox.value);
+                }
+            }
+            
+            counter = 0;
+            while((logCheckbox = document.getElementById(`realtimeLogType${++counter}`)) != null){
+                if(logCheckbox.checked == true){
+                    logFiltersType.push(logCheckbox.value);
+                }
+            }
+
+            counter = 0;
+            while((logCheckbox = document.getElementById(`realtimeLogHistoric${++counter}`)) != null){
+                if(logCheckbox.checked == true){
+                    historySize = Number(logCheckbox.value);
+                    break;
+                }
+            }
+            
+            applyFilterInTable();
+            toggleOptions();
+            console.log(`Applied Filters!`);
+        }
+
+        function toggleOptions() {
+            var x = document.getElementById("optMenu");
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else {
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+
+        function epochToLocale(epochValue){
+            var datetime = new Date(epochValue * 1000);
+
+            var parseTimeValue = function(value){
+                return ((value < 10) ? "0" : "") + value;
+            }
+
+            var ano = parseTimeValue(datetime.getFullYear());
+            var mes = parseTimeValue(datetime.getMonth() + 1);
+            var dia = parseTimeValue(datetime.getDate());
+
+            var hora = parseTimeValue(datetime.getHours());
+            var minuto = parseTimeValue(datetime.getMinutes());
+            var segundo = parseTimeValue(datetime.getSeconds());
+            
+            return `${dia}/${mes}/${ano}_${hora}:${minuto}:${segundo}`
+            // return `${ano}/${mes}/${dia} ${hora}:${minuto}:${segundo}`
+        }
+
+
+        function fetch(){
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4) {
+                    if (this.status == 200) {
+                       /* Realizando o parse do JSON */
+                        var json = JSON.parse(this.responseText);
+                        var jsonArray = json.logs;
+                        var table = document.getElementById("tableRealtime");
+
+                        currentTimestamp = json.timestamp;
+
+                        for (i = 0; i < jsonArray.length; i++) {
+                            if (table.rows.length >= historySize) {
+                                table.deleteRow(table.rows.length - 1);
+                            }
+                            var item = jsonArray[i];
+                            var row = table.insertRow(0);
+
+                            lastLogTimestamp = item.time;
+                            
+                            var cellDatetime = row.insertCell(0);
+                            var cellModule = row.insertCell(1);
+                            var cellType = row.insertCell(2);
+                            var cellMessage = row.insertCell(3);
+
+                            row.style.display = rowSetDisplay(item.module, item.verbosity);
+
+                            cellDatetime.style = `width: 200px;`;
+                            cellDatetime.innerHTML = epochToLocale(item.time / 1000);
+
+                            cellModule.style = `width: 170px;`;
+                            cellModule.innerHTML = item.module
+
+                            cellType.style = `width: 70px;`;
+                            cellType.innerHTML = item.verbosity
+
+                            cellMessage.innerHTML = item.message;
+                        }
+
+                        currentTimestamp = json.timestamp;
+
+                        document.title = `Smarter ${json.uid} LOGS`
+
+                        document.getElementById("loading").style.display = "none";
+                        document.getElementById("main").style.display = "";
+                    }
+
+                    if (this.status == 200 && connected != 1) {
+                        connected = 1;
+                        document.getElementById("timerClock").style.color = "black";
+                    }
+                    else if(this.status != 200 && connected != 0){
+                        connected = 0;
+                        document.getElementById("timerClock").style.color = "#eb503f";
+                    }
+                    
+                    setTimeout(function () {
+                        fetch();
+                    }, 2000);
+                }
+            };
+            xmlhttp.timeout = 5000;
+            xmlhttp.open("GET", `realtime-fetch?lastLogTimestamp=${lastLogTimestamp}`, true);
+            xmlhttp.send();
+        }
+
+        function applyFilterInTable(){
+            var rows = document.getElementById("tableRealtime").getElementsByTagName("tr");
+            var i;
+
+            var logModule;
+            var logType;
+            var columns;
+
+            for(i = 0; i < rows.length; ++i){
+                columns = rows[i].getElementsByTagName("td");
+
+                logModule = columns[1].textContent || columns[1].innerText;
+                logType = columns[2].textContent || columns[2].innerText;
+
+                rows[i].style.display = rowSetDisplay(logModule, logType);
+            }
+        }
+
+        function rowSetDisplay(logModule, logType){
+            if(logFiltersModule.includes(logModule) && logFiltersType.includes(logType)){
+                console.log(`${logModule}::${logType}: Display Block`);
+                return "";
+            }else{
+                console.log(`${logModule}::${logType}: Display None`);
+                return "none";
+            }
+        }
+
+        function getTime(time) {
+            var date = new Date(time * 1000);
+            return date.toISOString();
+        }
+
+
+        function onClick() {
+            var x = document.getElementById("navMenu");
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else {
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+
+    </script>
+
+</body></html>

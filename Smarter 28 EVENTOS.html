@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<!-- saved from url=(0027)http://192.168.0.101/events -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./Smarter 28 EVENTOS_files/w3.css">
+        <link rel="stylesheet" href="./Smarter 28 EVENTOS_files/custom.css">
+        <title>Smarter 28 EVENTOS</title>
+    </head>
+    <body>
+        <div class="w3-top">
+            <div class="w3-bar w3-green w3-card">
+                <a class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" href="javascript:void(0)" onclick="onClick()">MENU</a>
+            </div>
+        </div>
+        <div id="navMenu" class="w3-bar-block w3-white w3-hide w3-top" style="margin-top: 46px;">
+            <a href="http://192.168.0.101/" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">INÍCIO</a>
+            <a href="http://192.168.0.101/events" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">LOG DE EVENTOS</a>
+            <a href="http://192.168.0.101/realtime" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">LOG DE TEMPO REAL</a>
+            <a href="http://192.168.0.101/monitor" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">MONITORAMENTO</a>
+            <a href="http://192.168.0.101/limits" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">LIMITES</a>
+            <a href="http://192.168.0.101/update" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">ATUALIZAÇÃO DE FIRMWARE</a>
+            <a href="http://192.168.0.101/reset" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">REINICIAR</a>
+            <div class="w3-dropdown-hover">
+                <button class="w3-padding-large w3-button w3-white w3-hover-light-green " title="More">CONFIGURAÇÕES</button>
+                <div class="w3-dropdown-content w3-bar-block w3-card-4 w3-white">
+                    <a href="http://192.168.0.101/conn-config" class="w3-bar-item w3-button w3-hover-light-green" onclick="onClick()">Tipo de conexão</a>
+                    <a href="http://192.168.0.101/ocpp-config" class="w3-bar-item w3-button w3-hover-light-green" onclick="onClick()">Servidor OCPP</a>
+                    <a href="http://192.168.0.101/general-config" class="w3-bar-item w3-button w3-hover-light-green" onclick="onClick()">Geral</a>
+                    <a href="http://192.168.0.101/balancer-config" class="w3-bar-item w3-button w3-hover-light-green" onclick="onClick()">Balanceador</a>
+                </div>
+            </div>
+        </div>
+        <div class="w3-content" style="max-width: 2000px; margin-top: 46px;">
+            <div id="loading" class="loader" style="display: none;"></div>
+            <div id="main" style="">
+                <div id="empty" class="vertical-center w3-black w3-hide">
+                    <p style="text-align: center;">Nenhum registro encontrado.</p>
+                </div>
+                <table id="table" class="w3-table w3-bordered fixed-table" style="margin-bottom: 0px;">
+                    <tbody><tr>
+                        <th>Data/hora</th>
+                        <th>Descrição</th>
+                    </tr>
+                <tr><td>2024-02-21T17:12:12.000Z</td><td>Modo conectado (online)</td></tr><tr><td>2024-02-21T17:12:05.000Z</td><td>Sinal do CP desconectado</td></tr><tr><td>2024-02-21T17:12:05.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-21T17:12:05.000Z</td><td>Software reset CPU (SW_CPU_RESET)</td></tr><tr><td>2024-02-21T14:11:51.000Z</td><td>Sinal do CP desconectado</td></tr><tr><td>2024-02-21T14:11:51.000Z</td><td>Sinal do CP está aguardado para desconectar</td></tr><tr><td>2024-02-21T14:11:51.000Z</td><td>Modo conectado (online)</td></tr><tr><td>2024-02-21T14:11:18.000Z</td><td>Sinal do CP conectado</td></tr><tr><td>2024-02-21T14:11:13.000Z</td><td>Sinal do CP esta aguardado para conectar</td></tr><tr><td>2024-02-21T14:11:13.000Z</td><td>Modo desconectado (offline)</td></tr><tr><td>2024-02-20T18:59:23.000Z</td><td>Modo conectado (online)</td></tr><tr><td>2024-02-20T18:59:17.000Z</td><td>Sinal do CP desconectado</td></tr><tr><td>2024-02-20T18:59:17.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T18:59:17.000Z</td><td>Software reset CPU (SW_CPU_RESET)</td></tr><tr><td>2024-02-20T18:56:45.000Z</td><td>Modo conectado (online)</td></tr><tr><td>2024-02-20T18:56:38.000Z</td><td>Sinal do CP desconectado</td></tr><tr><td>2024-02-20T18:56:38.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T18:56:38.000Z</td><td>Software reset CPU (SW_CPU_RESET)</td></tr><tr><td>2024-02-20T18:55:46.000Z</td><td>Modo conectado (online)</td></tr><tr><td>2024-02-20T18:55:40.000Z</td><td>Sinal do CP desconectado</td></tr><tr><td>2024-02-20T18:55:40.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T18:55:40.000Z</td><td>Software reset CPU (SW_CPU_RESET)</td></tr><tr><td>2024-02-20T18:51:39.000Z</td><td>Modo conectado (online)</td></tr><tr><td>2024-02-20T18:51:33.000Z</td><td>Sinal do CP desconectado</td></tr><tr><td>2024-02-20T18:51:33.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T18:51:33.000Z</td><td>Software reset CPU (SW_CPU_RESET)</td></tr><tr><td>2024-02-20T18:18:33.000Z</td><td>Modo conectado (online)</td></tr><tr><td>2024-02-20T18:18:27.000Z</td><td>Sinal do CP desconectado</td></tr><tr><td>2024-02-20T18:18:27.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T18:18:27.000Z</td><td>Software reset CPU (SW_CPU_RESET)</td></tr><tr><td>2024-02-20T17:53:18.000Z</td><td>Modo conectado (online)</td></tr><tr><td>2024-02-20T17:53:10.000Z</td><td>Sinal do CP desconectado</td></tr><tr><td>2024-02-20T17:53:10.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:53:10.000Z</td><td>Software reset CPU (SW_CPU_RESET)</td></tr><tr><td>2024-02-20T17:50:35.000Z</td><td>Modo conectado (online)</td></tr><tr><td>2024-02-20T17:50:29.000Z</td><td>Sinal do CP desconectado</td></tr><tr><td>2024-02-20T17:50:29.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:50:29.000Z</td><td>Software reset CPU (SW_CPU_RESET)</td></tr><tr><td>2024-02-20T17:47:17.000Z</td><td>Modo conectado (online)</td></tr><tr><td>2024-02-20T17:47:10.000Z</td><td>Sinal do CP desconectado</td></tr><tr><td>2024-02-20T17:47:10.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:47:10.000Z</td><td>Software reset CPU (SW_CPU_RESET)</td></tr><tr><td>2024-02-20T17:42:15.000Z</td><td>Modo conectado (online)</td></tr><tr><td>2024-02-20T17:42:08.000Z</td><td>Sinal do CP desconectado</td></tr><tr><td>2024-02-20T17:42:08.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:42:08.000Z</td><td>Software reset CPU (SW_CPU_RESET)</td></tr><tr><td>2024-02-20T17:40:43.000Z</td><td>Modo conectado (online)</td></tr><tr><td>2024-02-20T17:40:37.000Z</td><td>Sinal do CP desconectado</td></tr><tr><td>2024-02-20T17:40:37.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:40:37.000Z</td><td>Software reset CPU (SW_CPU_RESET)</td></tr><tr><td>2024-02-20T17:38:11.000Z</td><td>Modo conectado (online)</td></tr><tr><td>2024-02-20T17:38:04.000Z</td><td>Sinal do CP desconectado</td></tr><tr><td>2024-02-20T17:38:04.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:38:04.000Z</td><td>Software reset CPU (SW_CPU_RESET)</td></tr><tr><td>2024-02-20T17:37:25.000Z</td><td>Modo conectado (online)</td></tr><tr><td>2024-02-20T17:37:19.000Z</td><td>Sinal do CP desconectado</td></tr><tr><td>2024-02-20T17:37:19.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:37:19.000Z</td><td>Software reset CPU (SW_CPU_RESET)</td></tr><tr><td>2024-02-20T17:22:54.000Z</td><td>Modo conectado (online)</td></tr><tr><td>2024-02-20T17:22:47.000Z</td><td>Sinal do CP desconectado</td></tr><tr><td>2024-02-20T17:22:47.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:22:47.000Z</td><td>Software reset CPU (SW_CPU_RESET)</td></tr><tr><td>2024-02-20T17:22:42.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:22:41.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:22:40.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:22:39.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:22:38.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:22:37.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:22:36.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:22:35.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:22:34.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:22:34.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:22:33.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:22:31.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:22:31.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:22:30.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:22:28.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:22:28.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:22:27.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:22:26.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:22:18.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:22:18.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:22:10.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:21:55.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:21:54.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:21:53.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:21:52.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:21:51.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:21:50.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:21:48.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:21:47.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:21:46.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:21:45.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:21:44.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:21:43.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:21:42.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:21:40.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:21:39.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:21:38.000Z</td><td>STM32: Reset por pino externo</td></tr><tr><td>2024-02-20T17:21:37.000Z</td><td>STM32: Reset por pino externo</td></tr></tbody></table>
+                <div id="page-bar" class="w3-bar w3-white w3-card w3-bottom w3-center">
+            </div>
+        </div>
+    
+    <script>
+        window.onload = function () {
+            fetch(getParameterByName("page"));
+        };
+        window.onresize = function () {
+            document.getElementById("table").style.marginBottom = document.getElementById("page-bar").offsetHeight + "px";
+        };
+        function getParameterByName(name, url = window.location.href) {
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+        function fetch(queryPage) {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var jsonObject = JSON.parse(this.responseText);
+                    document.title = `Smarter ${jsonObject.uid} EVENTOS`
+                    var items = jsonObject.items;
+                    var jsonPage = jsonObject.page;
+                    var total = jsonObject.total;
+                    var bar = document.getElementById("page-bar");
+                    for (i = 1; i <= total; i++) {
+                        var a = document.createElement('a');
+                        a.appendChild(document.createTextNode(i));
+                        a.className = "w3-button";
+                        if (i == jsonPage) {
+                            a.className += " w3-dark-grey";
+                        }
+                        a.href = "/events?page=" + i;
+                        bar.appendChild(a);
+                    }
+                    var table = document.getElementById("table");
+                    for (i = 0; i < items.length; i++) {
+                        var row = table.insertRow();
+                        var dateCell = row.insertCell(0);
+                        var descCell = row.insertCell(1);
+                        dateCell.innerHTML = getTime(items[i].time);
+                        descCell.innerHTML = getDescription(items[i].code);
+                    }
+                    if (items.length != 0) {
+                        hideEmpty();
+                    }
+                    setTimeout(function () {
+                        table.style.marginBottom = bar.offsetHeight + "px";
+                    }, 0);
+                    document.getElementById("loading").style.display = "none";
+                    document.getElementById("main").style.display = "";
+                }
+            };
+            if (queryPage !== null) {
+                xmlhttp.open("GET", "events-fetch?page=" + queryPage, true);
+            } else {
+                xmlhttp.open("GET", "events-fetch", true);
+            }
+            xmlhttp.send();
+        }
+        function getTime(time) {
+            var date = new Date(time * 1000);
+            return date.toISOString();
+        }
+        function getDescription(code) {
+            switch (code) {
+                case 0: return "Erro invalido";
+                case 1: return "STM32: Queda de Energia";
+                case 2: return "Retorno de Energia";
+                case 3: return "Modo desconectado (offline)";
+                case 4: return "Modo conectado (online)";
+                case 5: return "Carregador entrou de estado de erro (Estado E)";
+                case 6: return "Carregador saiu de estado de erro (Estado E)";
+                case 7: return "STM32: This reset is induced by calling the ARM CMSIS `NVIC_SystemReset()` function!";
+                case 8: return "Botão pressionado para factory-reset";
+                case 9: return "Software de PC conectado à placa";
+                case 10: return "Configurações alteradas pelo software de PC";
+                case 11: return "Atualizado firmware pelo software de PC";
+                case 12: return "STM32: Reset por Watchdog";
+                case 13: return "STM32: Reset por Baixa Energia";
+                case 14: return "STM32: Reset por pino externo";
+                case 15: return "STM32: Reset por Brownout";
+                case 16: return "STM32: Causa de reset desconhecida";
+                case 17: return "Executada função que define os valores default para a Struct de Config";
+                case 18: return "Executada função limpa os logs de data transfer";
+                case 19: return "Carregador Entrou no estado A";
+                case 20: return "Carregador Entrou no estado B";
+                case 21: return "Carregador Entrou no estado C";
+                case 22: return "Carregador Entrou no estado D";
+                case 23: return "Carregador Entrou no estado E";
+                case 24: return "Sinal do CP conectado";
+                case 25: return "Sinal do CP desconectado";
+                case 26: return "Sinal do CP esta aguardado para conectar";
+                case 27: return "Sinal do CP está aguardado para desconectar";
+                case 28: return "Executada função que define os valores default para a Struct da Calibração do Ade9000";
+                case 29: return "Problema de leitura do ID do Ade9000";
+                case 30: return "Tensão do Canal C menor que 50";
+                case 31: return "Vbat power on reset (POWERON_RESET)";
+                case 32: return "Unknown (NO_MEAN)";
+                case 33: return "Software reset digital core (SW_RESET)";
+                case 34: return "Legacy watch dog reset digital core (OWDT_RESET)";
+                case 35: return "Deep Sleep reset digital core (DEEPSLEEP_RESET)";
+                case 36: return "Reset by SLC module, reset digital core (SDIO_RESET)";
+                case 37: return "Timer Group0 Watch dog reset digital core (TG0WDT_SYS_RESET)";
+                case 38: return "Timer Group1 Watch dog reset digital core (TG1WDT_SYS_RESET)";
+                case 39: return "RTC Watch dog Reset digital core (RTCWDT_SYS_RESET)";
+                case 40: return "Instrusion tested to reset CPU	(INTRUSION_RESET)";
+                case 41: return "Time Group reset CPU (TGWDT_CPU_RESET)";
+                case 42: return "Software reset CPU (SW_CPU_RESET)";
+                case 43: return "RTC Watch dog Reset CPU (RTCWDT_CPU_RESET)";
+                case 44: return "for APP CPU, reseted by PRO CPU (EXT_CPU_RESET)";
+                case 45: return "Reset when the vdd voltage is not stable (RTCWDT_BROWN_OUT_RESET)";
+                case 46: return "RTC Watch dog reset digital core and rtc module (RTCWDT_RTC_RESET)";
+                case 47: return "Reset Stm32 por falta de comunicação serial";
+                case 48: return "Nenhum dado de energia valido salva na eeprom";
+                case 49: return "Nenhum dado de index valido salvo na eeprom";
+                default: return "";
+            }
+        }
+        function onClick() {
+            var x = document.getElementById("navMenu");
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else {
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+        function hideEmpty() {
+            var x = document.getElementById("empty");
+            if (x.className.indexOf("w3-hide") == -1) {
+                x.className += " w3-hide";
+            }
+        }
+        function showEmpty() {
+            var x = document.getElementById("empty");
+            if (x.className.indexOf("w3-hide") != -1) {
+                x.className = x.className.replace(" w3-hide", "");
+            }
+        }
+    </script>
+
+</div></body></html>

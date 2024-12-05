@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<!-- saved from url=(0036)http://192.168.0.101/balancer-config -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./Smarter 28 BALANCIAMENTO_files/w3.css">
+        <link rel="stylesheet" href="./Smarter 28 BALANCIAMENTO_files/custom.css">
+        <title>Smarter 28 BALANCIAMENTO</title>
+    </head>
+    <body>
+        <div class="w3-top">
+            <div class="w3-bar w3-green w3-card">
+                <a class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" href="javascript:void(0)" onclick="onClick()">MENU</a>
+            </div>
+        </div>
+        <div id="navMenu" class="w3-bar-block w3-white w3-hide w3-top" style="margin-top: 46px;">
+            <a href="http://192.168.0.101/" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">INÍCIO</a>
+            <a href="http://192.168.0.101/events" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">LOG DE EVENTOS</a>
+            <a href="http://192.168.0.101/realtime" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">LOG DE TEMPO REAL</a>
+            <a href="http://192.168.0.101/monitor" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">MONITORAMENTO</a>
+            <a href="http://192.168.0.101/limits" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">LIMITES</a>
+            <a href="http://192.168.0.101/update" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">ATUALIZAÇÃO DE FIRMWARE</a>
+            <a href="http://192.168.0.101/reset" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">REINICIAR</a>
+            <div class="w3-dropdown-hover">
+                <button class="w3-padding-large w3-button w3-white w3-hover-light-green" title="More">CONFIGURAÇÕES</button>
+                <div class="w3-dropdown-content w3-bar-block w3-card-4 w3-white">
+                    <a href="http://192.168.0.101/conn-config" class="w3-bar-item w3-button w3-hover-light-green" onclick="onClick()">Tipo de conexão</a>
+                    <a href="http://192.168.0.101/ocpp-config" class="w3-bar-item w3-button w3-hover-light-green" onclick="onClick()">Servidor OCPP</a>
+                    <a href="http://192.168.0.101/general-config" class="w3-bar-item w3-button w3-hover-light-green" onclick="onClick()">Geral</a>
+                    <a href="http://192.168.0.101/balancer-config" class="w3-bar-item w3-button w3-hover-light-green" onclick="onClick()">Balanceador</a>
+                </div>
+            </div>
+        </div>
+        <div class="w3-content" style="max-width: 2000px; margin-top: 46px;">
+            <div id="loading" class="loader" style="display: none;"></div>
+            <div id="main" style="margin-bottom: 100px;">
+                <header class="w3-container w3-dark-grey">
+                    <h5>Balanceador</h5>
+                </header>
+                <div class="w3-card-4 w3-margin">
+                    <header class="w3-container w3-light-grey w3-padding">
+                        <input type="radio" id="bal-on" name="bal">
+                        <label for="bal-on">Usar balanceador</label>
+                    </header>
+                    <div class="w3-container w3-padding-16">
+                        <ul>
+                            <li>O limite será definido exclusivamente pelo balanceador da rede</li>
+                            <li>O carregador deixará de aceitar comandos OCPP do tipo Smart Charging</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="w3-card-4 w3-margin">
+                    <header class="w3-container w3-light-grey w3-padding">
+                        <input type="radio" id="bal-off" name="bal">
+                        <label for="bal-off">Usar Smart Charging OCPP</label>
+                    </header>
+                    <div class="w3-container w3-padding-16">
+                        <ul>
+                            <li>O limite será definido exclusivamente pelos perfis de carregamento</li>
+                            <li>O carregador não ficará visível para o balanceador da rede</li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="errors" class="w3-card-4 w3-margin" style="display: none;">
+                    <header class="w3-container w3-red">
+                        <h6>Erros encontrados</h6>
+                    </header>
+                    <div class="w3-container w3-padding-16">
+                        <div style="color: red;">
+                            <div id="bal-error" style="display: none;">Nenhuma opção selecionada</div>
+                        </div>
+                    </div>
+                </div>
+                <button id="save-btn" class="w3-btn w3-block w3-green w3-bottom w3-large  w3-hover-text-black" onclick="save();">Salvar</button>
+            </div>
+        </div>
+    
+    <script>
+        window.onload = function () {
+            fetch();
+        };
+        function fetch() {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var jsonObject = JSON.parse(this.responseText);
+                    document.title = `Smarter ${jsonObject.uid} BALANCIAMENTO`
+                    if (jsonObject.balancerEnabled === true) {
+                        document.getElementById("bal-on").checked = true;
+                    } else {
+                        document.getElementById("bal-off").checked = true;
+                    }
+                    document.getElementById("loading").style.display = "none";
+                    document.getElementById("main").style.display = "";
+                }
+            };
+            xmlhttp.open("GET", "balancer-config-fetch", true);
+            xmlhttp.send();
+        }
+        function validate() {
+            var valid = true;
+            document.getElementById("bal-error").style.display = "none";
+            document.getElementById("errors").style.display = "none";
+            if (!document.getElementById("bal-on").checked && !document.getElementById("bal-off").checked) {
+                document.getElementById("bal-error").style.display = "";
+                valid = false;
+            }
+            if (!valid) {
+                document.getElementById("errors").style.display = "";
+            }
+            return valid;
+        }
+        function save() {
+            if (!validate()) {
+                scroll();
+                return;
+            }
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    resetPrompt();
+                    document.getElementById("save-btn").innerHTML = "Salvo!";
+                    setTimeout(function () {
+                        document.getElementById("save-btn").innerHTML = "Salvar";
+                        document.getElementById("save-btn").disabled = false;
+                    }, 1000);
+                }
+            };
+            xmlhttp.open("POST", "balancer-config-save");
+            xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xmlhttp.send(
+                JSON.stringify({
+                    balancerEnabled: document.getElementById("bal-on").checked,
+                })
+            );
+            document.getElementById("save-btn").innerHTML = "Salvando...";
+            document.getElementById("save-btn").disabled = true;
+        }
+        function onClick() {
+            var x = document.getElementById("navMenu");
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else {
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+        function scroll() {
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+        function resetPrompt() {
+            if (confirm("As alterações foram salvas com sucesso. Deseja reiniciar?") == true) {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.open("GET", "reset-fetch", true);
+                xmlhttp.send();
+            }
+        }
+    </script>
+
+</body></html>

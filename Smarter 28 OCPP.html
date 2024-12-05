@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<!-- saved from url=(0032)http://192.168.0.101/ocpp-config -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./Smarter 28 OCPP_files/w3.css">
+        <link rel="stylesheet" href="./Smarter 28 OCPP_files/custom.css">
+        <title>Smarter 28 OCPP</title>
+    </head>
+    <body>
+        <div class="w3-top">
+            <div class="w3-bar w3-green w3-card">
+                <a class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" href="javascript:void(0)" onclick="onClick()">MENU</a>
+            </div>
+        </div>
+        <div id="navMenu" class="w3-bar-block w3-white w3-hide w3-top" style="margin-top: 46px;">
+            <a href="http://192.168.0.101/" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">INÍCIO</a>
+            <a href="http://192.168.0.101/events" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">LOG DE EVENTOS</a>
+            <a href="http://192.168.0.101/realtime" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">LOG DE TEMPO REAL</a>
+            <a href="http://192.168.0.101/monitor" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">MONITORAMENTO</a>
+            <a href="http://192.168.0.101/limits" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">LIMITES</a>
+            <a href="http://192.168.0.101/update" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">ATUALIZAÇÃO DE FIRMWARE</a>
+            <a href="http://192.168.0.101/reset" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">REINICIAR</a>
+            <div class="w3-dropdown-hover">
+                <button class="w3-padding-large w3-button w3-white w3-hover-light-green" title="More">CONFIGURAÇÕES</button>
+                <div class="w3-dropdown-content w3-bar-block w3-card-4 w3-white">
+                    <a href="http://192.168.0.101/conn-config" class="w3-bar-item w3-button w3-hover-light-green" onclick="onClick()">Tipo de conexão</a>
+                    <a href="http://192.168.0.101/ocpp-config" class="w3-bar-item w3-button w3-hover-light-green" onclick="onClick()">Servidor OCPP</a>
+                    <a href="http://192.168.0.101/general-config" class="w3-bar-item w3-button w3-hover-light-green" onclick="onClick()">Geral</a>
+                    <a href="http://192.168.0.101/balancer-config" class="w3-bar-item w3-button w3-hover-light-green" onclick="onClick()">Balanceador</a>
+                </div>
+            </div>
+        </div>
+        <div class="w3-content" style="max-width: 2000px; margin-top: 46px;">
+            <div id="loading" class="loader" style="display: none;"></div>
+            <div id="main" style="margin-bottom: 100px;">
+                <header class="w3-container w3-dark-grey">
+                    <h5>Servidor OCPP</h5>
+                </header>
+                <div class="w3-margin">
+                    <div class="center">
+                        <label for="ocpp-domain">Domínio:</label>
+                        <input class="input-expanded" type="text" id="ocpp-domain">
+                    </div>
+                    <p>Obs.: digite apenas o domínio (ex.: flmtecnologia.com e não http://flmtecnologia.com)</p>
+                    <div class="w3-card-4 w3-margin-top w3-margin-bottom">
+                        <header class="w3-container w3-light-grey">
+                            <h6>Protocolo</h6>
+                        </header>
+                        <div class="w3-container w3-row">
+                            <div class="w3-card-4 w3-margin-top w3-margin-bottom">
+                                <header class="w3-container w3-light-grey w3-padding">
+                                    <input type="radio" id="proto-ws" name="proto" onclick="updateFields(false)">
+                                    <label for="proto-ws">ws://</label>
+                                </header>
+                                <div class="w3-container w3-padding-16">
+                                    <div class="center">
+                                        <label for="ocpp-port-ws">Porta:</label>
+                                        <input class="input-expanded" type="number" id="ocpp-port-ws" disabled="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w3-card-4 w3-margin-top w3-margin-bottom">
+                                <header class="w3-container w3-light-grey w3-padding">
+                                    <input type="radio" id="proto-wss" name="proto" onclick="updateFields(true)">
+                                    <label for="proto-wss">wss://</label>
+                                </header>
+                                <div class="w3-container w3-padding-16">
+                                    <div class="center">
+                                        <label for="ocpp-port-wss">Porta:</label>
+                                        <input class="input-expanded" type="number" id="ocpp-port-wss">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="errors" class="w3-card-4 w3-margin" style="display: none;">
+                    <header class="w3-container w3-red">
+                        <h6>Erros encontrados</h6>
+                    </header>
+                    <div class="w3-container w3-padding-16">
+                        <div style="color: red;">
+                            <div id="domain-error" style="display: none;">"Domínio" inválido</div>
+                            <div id="port-error" style="display: none;">"Porta" inválido</div>
+                            <div id="proto-error" style="display: none;">"Protocolo" inválido</div>
+                            <div id="remote-error" style="display: none;"></div>
+                        </div>
+                    </div>
+                </div>
+                <button id="save-btn" class="w3-btn w3-block w3-green w3-bottom w3-large w3-hover-text-black" onclick="save();">Salvar</button>
+            </div>
+        </div>
+    
+    <script>
+        window.onload = function () {
+            fetch();
+        };
+        function updateFields(secure) {
+            document.getElementById("ocpp-port-ws").disabled = secure;
+            document.getElementById("ocpp-port-wss").disabled = !secure;
+        }
+        function fetch() {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var jsonObject = JSON.parse(this.responseText);
+                    document.title = `Smarter ${jsonObject.uid} OCPP`
+                    document.getElementById("ocpp-domain").value = jsonObject.ocppAddress;
+                    document.getElementById("ocpp-port-ws").value = jsonObject.ocppPort;
+                    document.getElementById("ocpp-port-wss").value = jsonObject.secureOcppPort;
+                    if (jsonObject.isSecure === true) {
+                        document.getElementById("proto-wss").checked = true;
+                        updateFields(true);
+                    } else {
+                        document.getElementById("proto-ws").checked = true;
+                        updateFields(false);
+                    }
+                    document.getElementById("loading").style.display = "none";
+                    document.getElementById("main").style.display = "";
+                }
+            };
+            xmlhttp.open("GET", "ocpp-config-fetch", true);
+            xmlhttp.send();
+        }
+        function validate() {
+            var valid = true;
+            document.getElementById("domain-error").style.display = "none";
+            document.getElementById("port-error").style.display = "none";
+            document.getElementById("proto-error").style.display = "none";
+            document.getElementById("remote-error").style.display = "none";
+            document.getElementById("errors").style.display = "none";
+            if (document.getElementById("ocpp-domain").value.length <= 0) {
+            	document.getElementById("domain-error").style.display = "";
+                valid = false;
+            }
+            if (!document.getElementById("proto-ws").checked && !document.getElementById("proto-wss").checked) {
+            	document.getElementById("proto-error").style.display = "";
+                valid = false;
+            }
+            if (document.getElementById("proto-ws").checked) {
+                if (document.getElementById("ocpp-port-ws").value < 1 || document.getElementById("ocpp-port-ws").value > 65535) {
+                    document.getElementById("port-error").style.display = "";
+                    valid = false;
+                }
+            }
+            if (document.getElementById("proto-wss").checked) {
+                if (document.getElementById("ocpp-port-wss").value < 1 || document.getElementById("ocpp-port-wss").value > 65535) {
+                    document.getElementById("port-error").style.display = "";
+                    valid = false;
+                }
+            }
+            if (!valid) {
+                document.getElementById("errors").style.display = "";
+            }
+            return valid;
+        }
+        function save() {
+            if (!validate()) {
+                scroll();
+                return;
+            }
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4) {
+                    if (this.status == 200) {
+                        resetPrompt();
+                        document.getElementById("save-btn").innerHTML = "Salvo!";
+                        setTimeout(function () {
+                            document.getElementById("save-btn").innerHTML = "Salvar";
+                            document.getElementById("save-btn").disabled = false;
+                        }, 1000);
+                    } else if (this.status == 400) {
+                        var jsonObject = JSON.parse(this.responseText);
+                        document.getElementById("remote-error").innerHTML = jsonObject.error;
+                        document.getElementById("save-btn").innerHTML = "Salvar";
+                        document.getElementById("save-btn").disabled = false;
+                        document.getElementById("remote-error").style.display = "";
+                        document.getElementById("errors").style.display = "";
+                    }
+                }
+            };
+            xmlhttp.open("POST", "ocpp-config-save");
+            xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xmlhttp.send(
+                JSON.stringify(document.getElementById("proto-wss").checked ? {
+                    ocppAddress: document.getElementById("ocpp-domain").value,
+                    secureOcppPort: document.getElementById("ocpp-port-wss").value,
+                    isSecure: true,
+                } : {
+                    ocppAddress: document.getElementById("ocpp-domain").value,
+                    ocppPort: document.getElementById("ocpp-port-ws").value,
+                    isSecure: false,
+                })
+            );
+            document.getElementById("save-btn").innerHTML = "Salvando...";
+            document.getElementById("save-btn").disabled = true;
+        }
+        function onClick() {
+            var x = document.getElementById("navMenu");
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else {
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+        function scroll() {
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+        function resetPrompt() {
+            if (confirm("As alterações foram salvas com sucesso. Deseja reiniciar?") == true) {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.open("GET", "reset-fetch", true);
+                xmlhttp.send();
+            }
+        }
+    </script>
+
+</body></html>

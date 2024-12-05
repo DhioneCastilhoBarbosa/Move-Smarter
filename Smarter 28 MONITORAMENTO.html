@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<!-- saved from url=(0028)http://192.168.0.101/monitor -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./Smarter 28 MONITORAMENTO_files/w3.css">
+        <link rel="stylesheet" href="./Smarter 28 MONITORAMENTO_files/custom.css">
+        <title>Smarter 28 MONITORAMENTO</title>
+    </head>
+    <body>
+        <div class="w3-top">
+            <div class="w3-bar w3-green w3-card">
+                <a class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" href="javascript:void(0)" onclick="onClick()">MENU</a>
+                <a class="w3-right w3-show w3-padding-large" id="timerClock" style="color: black; font-weight: bold">21/02/2024 14:24:57</a>
+            </div>
+        </div>
+        <div id="navMenu" class="w3-bar-block w3-white w3-hide w3-top" style="margin-top: 46px;">
+            <a href="http://192.168.0.101/" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">INÍCIO</a>
+            <a href="http://192.168.0.101/events" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">LOG DE EVENTOS</a>
+            <a href="http://192.168.0.101/realtime" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">LOG DE TEMPO REAL</a>
+            <a href="http://192.168.0.101/monitor" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">MONITORAMENTO</a>
+            <a href="http://192.168.0.101/limits" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">LIMITES</a>
+            <a href="http://192.168.0.101/update" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">ATUALIZAÇÃO DE FIRMWARE</a>
+            <a href="http://192.168.0.101/reset" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">REINICIAR</a>
+            <div class="w3-dropdown-hover">
+                <button class="w3-padding-large w3-button w3-white w3-hover-light-green" title="More">CONFIGURAÇÕES</button>
+                <div class="w3-dropdown-content w3-bar-block w3-card-4 w3-white">
+                    <a href="http://192.168.0.101/conn-config" class="w3-bar-item w3-button w3-hover-light-green" onclick="onClick()">Tipo de conexão</a>
+                    <a href="http://192.168.0.101/ocpp-config" class="w3-bar-item w3-button w3-hover-light-green" onclick="onClick()">Servidor OCPP</a>
+                    <a href="http://192.168.0.101/general-config" class="w3-bar-item w3-button w3-hover-light-green" onclick="onClick()">Geral</a>
+                    <a href="http://192.168.0.101/balancer-config" class="w3-bar-item w3-button w3-hover-light-green" onclick="onClick()">Balanceador</a>
+                </div>
+            </div>
+        </div>
+        <div class="w3-content" style="max-width: 2000px; margin-top: 46px;">
+            <div id="loading" class="loader" style="display: none;"></div>
+            <div id="main" style="">
+                <header class="w3-container w3-dark-grey">
+                    <h5>Medição de Energia</h5>
+                </header>
+                <div class="w3-row">
+                    <div class="w3-col m6 l3">
+                        <div class="w3-card-4 w3-margin">
+                            <header class="w3-container w3-light-grey">
+                                <h6>Tensão</h6>
+                            </header>
+                            <div class="w3-container w3-padding-16">
+                                <div class="center">
+                                    <label for="v-a">A:</label>
+                                    <input class="input-expanded" type="text" id="v-a" disabled="true">
+                                    <span>V</span>
+                                </div>
+                                <div class="center">
+                                    <label for="v-b">B:</label>
+                                    <input class="input-expanded" type="text" id="v-b" disabled="true">
+                                    <span>V</span>
+                                </div>
+                                <div class="center">
+                                    <label for="v-c">C:</label>
+                                    <input class="input-expanded" type="text" id="v-c" disabled="true">
+                                    <span>V</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w3-col m6 l3">
+                        <div class="w3-card-4 w3-margin">
+                            <header class="w3-container w3-light-grey">
+                                <h6>Corrente</h6>
+                            </header>
+                            <div class="w3-container w3-padding-16">
+                                <div class="center">
+                                    <label for="i-a">A:</label>
+                                    <input class="input-expanded" type="text" id="i-a" disabled="true">
+                                    <span>A</span>
+                                </div>
+                                <div class="center">
+                                    <label for="i-b">B:</label>
+                                    <input class="input-expanded" type="text" id="i-b" disabled="true">
+                                    <span>A</span>
+                                </div>
+                                <div class="center">
+                                    <label for="i-c">C:</label>
+                                    <input class="input-expanded" type="text" id="i-c" disabled="true">
+                                    <span>A</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w3-col m6 l3">
+                        <div class="w3-card-4 w3-margin">
+                            <header class="w3-container w3-light-grey">
+                                <h6>Potência Ativa</h6>
+                            </header>
+                            <div class="w3-container w3-padding-16">
+                                <div class="center">
+                                    <label for="ac-pw-a">A:</label>
+                                    <input class="input-expanded" type="text" id="ac-pw-a" disabled="true">
+                                    <span>W</span>
+                                </div>
+                                <div class="center">
+                                    <label for="ac-pw-b">B:</label>
+                                    <input class="input-expanded" type="text" id="ac-pw-b" disabled="true">
+                                    <span>W</span>
+                                </div>
+                                <div class="center">
+                                    <label for="ac-pw-c">C:</label>
+                                    <input class="input-expanded" type="text" id="ac-pw-c" disabled="true">
+                                    <span>W</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w3-col m6 l3">
+                        <div class="w3-card-4 w3-margin">
+                            <header class="w3-container w3-light-grey">
+                                <h6>Potência Reativa</h6>
+                            </header>
+                            <div class="w3-container w3-padding-16">
+                                <div class="center">
+                                    <label for="r-pw-a">A:</label>
+                                    <input class="input-expanded" type="text" id="r-pw-a" disabled="true">
+                                    <span>var</span>
+                                </div>
+                                <div class="center">
+                                    <label for="r-pw-b">B:</label>
+                                    <input class="input-expanded" type="text" id="r-pw-b" disabled="true">
+                                    <span>var</span>
+                                </div>
+                                <div class="center">
+                                    <label for="r-pw-c">C:</label>
+                                    <input class="input-expanded" type="text" id="r-pw-c" disabled="true">
+                                    <span>var</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w3-col m6 l3">
+                        <div class="w3-card-4 w3-margin">
+                            <header class="w3-container w3-light-grey">
+                                <h6>Potência Aparente</h6>
+                            </header>
+                            <div class="w3-container w3-padding-16">
+                                <div class="center">
+                                    <label for="ap-pw-a">A:</label>
+                                    <input class="input-expanded" type="text" id="ap-pw-a" disabled="true">
+                                    <span>VA</span>
+                                </div>
+                                <div class="center">
+                                    <label for="ap-pw-b">B:</label>
+                                    <input class="input-expanded" type="text" id="ap-pw-b" disabled="true">
+                                    <span>VA</span>
+                                </div>
+                                <div class="center">
+                                    <label for="ap-pw-c">C:</label>
+                                    <input class="input-expanded" type="text" id="ap-pw-c" disabled="true">
+                                    <span>VA</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w3-col m6 l3">
+                        <div class="w3-card-4 w3-margin">
+                            <header class="w3-container w3-light-grey">
+                                <h6>Energia Ativa</h6>
+                            </header>
+                            <div class="w3-container w3-padding-16">
+                                <div class="center">
+                                    <label for="ac-en-a">A:</label>
+                                    <input class="input-expanded" type="text" id="ac-en-a" disabled="true">
+                                    <span>Wh</span>
+                                </div>
+                                <div class="center">
+                                    <label for="ac-en-b">B:</label>
+                                    <input class="input-expanded" type="text" id="ac-en-b" disabled="true">
+                                    <span>Wh</span>
+                                </div>
+                                <div class="center">
+                                    <label for="ac-en-c">C:</label>
+                                    <input class="input-expanded" type="text" id="ac-en-c" disabled="true">
+                                    <span>Wh</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w3-col m6 l3">
+                        <div class="w3-card-4 w3-margin">
+                            <header class="w3-container w3-light-grey">
+                                <h6>Energia Reativa</h6>
+                            </header>
+                            <div class="w3-container w3-padding-16">
+                                <div class="center">
+                                    <label for="r-en-a">A:</label>
+                                    <input class="input-expanded" type="text" id="r-en-a" disabled="true">
+                                    <span>varh</span>
+                                </div>
+                                <div class="center">
+                                    <label for="r-en-b">B:</label>
+                                    <input class="input-expanded" type="text" id="r-en-b" disabled="true">
+                                    <span>varh</span>
+                                </div>
+                                <div class="center">
+                                    <label for="r-en-c">C:</label>
+                                    <input class="input-expanded" type="text" id="r-en-c" disabled="true">
+                                    <span>varh</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w3-col m6 l3">
+                        <div class="w3-card-4 w3-margin">
+                            <header class="w3-container w3-light-grey">
+                                <h6>Energia Aparente</h6>
+                            </header>
+                            <div class="w3-container w3-padding-16">
+                                <div class="center">
+                                    <label for="ap-en-a">A:</label>
+                                    <input class="input-expanded" type="text" id="ap-en-a" disabled="true">
+                                    <span>VAh</span>
+                                </div>
+                                <div class="center">
+                                    <label for="ap-en-b">B:</label>
+                                    <input class="input-expanded" type="text" id="ap-en-b" disabled="true">
+                                    <span>VAh</span>
+                                </div>
+                                <div class="center">
+                                    <label for="ap-en-c">C:</label>
+                                    <input class="input-expanded" type="text" id="ap-en-c" disabled="true">
+                                    <span>VAh</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <header class="w3-container w3-dark-grey">
+                    <h5>Comunicação Carro</h5>
+                </header>
+                <div class="w3-margin">
+                    <div class="center">
+                        <label for="car-cp-status">Estado CP:</label>
+                        <input class="input-expanded" type="text" id="car-cp-status" disabled="true">
+                    </div>
+                    <div class="center">
+                        <label for="car-cp-v">Tensão CP:</label>
+                        <input class="input-expanded" type="text" id="car-cp-v" disabled="true">
+                        <span>V</span>
+                    </div>
+                    <div class="center">
+                        <label for="car-cp-freq">Frequência PWM CP:</label>
+                        <input class="input-expanded" type="text" id="car-cp-freq" disabled="true">
+                        <span>Hz</span>
+                    </div>
+                    <div class="center">
+                        <label for="car-cp-duty">Duty Cycle CP:</label>
+                        <input class="input-expanded" type="text" id="car-cp-duty" disabled="true">
+                        <span>%</span>
+                    </div>
+                    <div class="center">
+                        <label for="car-chrg">Corrente de Carga:</label>
+                        <input class="input-expanded" type="text" id="car-chrg" disabled="true">
+                        <span>A</span>
+                    </div>
+                </div>
+                <header class="w3-container w3-dark-grey">
+                    <h5>Comunicação Carregador</h5>
+                </header>
+                <div class="w3-margin">
+                    <div class="center">
+                        <label for="chrg-cp-status">Estado CP:</label>
+                        <input class="input-expanded" type="text" id="chrg-cp-status" disabled="true">
+                    </div>
+                    <div class="center">
+                        <label for="chrg-cp-v">Tensão CP:</label>
+                        <input class="input-expanded" type="text" id="chrg-cp-v" disabled="true">
+                        <span>V</span>
+                    </div>
+                    <div class="center">
+                        <label for="chrg-cp-freq">Frequência PWM CP:</label>
+                        <input class="input-expanded" type="text" id="chrg-cp-freq" disabled="true">
+                        <span>Hz</span>
+                    </div>
+                    <div class="center">
+                        <label for="chrg-cp-duty">Duty Cycle CP:</label>
+                        <input class="input-expanded" type="text" id="chrg-cp-duty" disabled="true">
+                        <span>%</span>
+                    </div>
+                    <div class="center">
+                        <label for="chrg-chrg">Corrente de Carga:</label>
+                        <input class="input-expanded" type="text" id="chrg-chrg" disabled="true">
+                        <span>A</span>
+                    </div>
+                </div>
+                <header class="w3-container w3-dark-grey">
+                    <h5>Status Conexão Web</h5>
+                </header>
+                <div class="w3-margin">
+                    <div class="center">
+                        <label for="last-tx">Último Envio:</label>
+                        <input class="input-expanded" type="text" id="last-tx" disabled="true">
+                    </div>
+                    <div class="center">
+                        <label for="last-rx">Última Recepção:</label>
+                        <input class="input-expanded" type="text" id="last-rx" disabled="true">
+                    </div>
+                    <div class="center">
+                        <label for="boot-status">Boot notification:</label>
+                        <input class="input-expanded" type="text" id="boot-status" disabled="true">
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    <script>
+        let currentTimestamp = 0;
+        let connected = -1;
+
+        window.onload = function () {
+            fetch();
+
+            setInterval(updateClock, 1000);
+        };
+
+        function epochToLocale(epochValue){
+            var datetime = new Date(epochValue * 1000);
+
+            var parseTimeValue = function(value){
+                return ((value < 10) ? "0" : "") + value;
+            }
+
+            var ano = parseTimeValue(datetime.getFullYear());
+            var mes = parseTimeValue(datetime.getMonth() + 1);
+            var dia = parseTimeValue(datetime.getDate());
+
+            var hora = parseTimeValue(datetime.getHours());
+            var minuto = parseTimeValue(datetime.getMinutes());
+            var segundo = parseTimeValue(datetime.getSeconds());
+            
+            return `${dia}/${mes}/${ano} ${hora}:${minuto}:${segundo}`
+            // return `${ano}/${mes}/${dia} ${hora}:${minuto}:${segundo}`
+        }
+
+        function updateClock(){
+            if(currentTimestamp != undefined){
+                currentTimestamp += 1;
+                document.getElementById("timerClock").innerHTML = epochToLocale(currentTimestamp + 946684800);
+            }
+        }
+
+        function fetch() {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4) {
+                    if (this.status == 200) {
+                        var jsonObject = JSON.parse(this.responseText);
+                        document.getElementById("v-a").value = jsonObject.voltA.toFixed(2);
+                        document.getElementById("v-b").value = jsonObject.voltB.toFixed(2);
+                        document.getElementById("v-c").value = jsonObject.voltC.toFixed(2);
+                        document.getElementById("i-a").value = jsonObject.currA.toFixed(2);
+                        document.getElementById("i-b").value = jsonObject.currB.toFixed(2);
+                        document.getElementById("i-c").value = jsonObject.currC.toFixed(2);
+                        document.getElementById("ac-pw-a").value = jsonObject.actPwrA.toFixed(2);
+                        document.getElementById("ac-pw-b").value = jsonObject.actPwrB.toFixed(2);
+                        document.getElementById("ac-pw-c").value = jsonObject.actPwrC.toFixed(2);
+                        document.getElementById("r-pw-a").value = jsonObject.reactPwrA.toFixed(2);
+                        document.getElementById("r-pw-b").value = jsonObject.reactPwrB.toFixed(2);
+                        document.getElementById("r-pw-c").value = jsonObject.reactPwrC.toFixed(2);
+                        document.getElementById("ap-pw-a").value = jsonObject.apPwrA.toFixed(2);
+                        document.getElementById("ap-pw-b").value = jsonObject.apPwrB.toFixed(2);
+                        document.getElementById("ap-pw-c").value = jsonObject.apPwrC.toFixed(2);
+                        document.getElementById("ac-en-a").value = jsonObject.actEnA.toFixed(2);
+                        document.getElementById("ac-en-b").value = jsonObject.actEnB.toFixed(2);
+                        document.getElementById("ac-en-c").value = jsonObject.actEnC.toFixed(2);
+                        document.getElementById("r-en-a").value = jsonObject.reactEnA.toFixed(2);
+                        document.getElementById("r-en-b").value = jsonObject.reactEnB.toFixed(2);
+                        document.getElementById("r-en-c").value = jsonObject.reactEnC.toFixed(2);
+                        document.getElementById("ap-en-a").value = jsonObject.apEnA.toFixed(2);
+                        document.getElementById("ap-en-b").value = jsonObject.apEnB.toFixed(2);
+                        document.getElementById("ap-en-c").value = jsonObject.apEnC.toFixed(2);
+                        document.getElementById("car-cp-status").value = String.fromCharCode(jsonObject.carCpStatus);
+                        document.getElementById("car-cp-v").value = jsonObject.carCpV;
+                        document.getElementById("car-cp-freq").value = jsonObject.carCpFreq;
+                        document.getElementById("car-cp-duty").value = jsonObject.carCpDuty;
+                        document.getElementById("car-chrg").value = jsonObject.carChrg;
+                        document.getElementById("chrg-cp-status").value = String.fromCharCode(jsonObject.chrgCpStatus);
+                        document.getElementById("chrg-cp-v").value = jsonObject.chrgCpV;
+                        document.getElementById("chrg-cp-freq").value = jsonObject.chrgCpFreq;
+                        document.getElementById("chrg-cp-duty").value = jsonObject.chrgCpDuty;
+                        document.getElementById("chrg-chrg").value = jsonObject.chrgChrg;
+                        document.getElementById("last-tx").value = getTime(jsonObject.lastTx);
+                        document.getElementById("last-rx").value = getTime(jsonObject.lastRx);
+                        document.getElementById("boot-status").value = jsonObject.boot;
+
+                        document.title = `Smarter ${jsonObject.uid} MONITORAMENTO`
+
+                        currentTimestamp = jsonObject.timestamp;
+
+                        document.getElementById("loading").style.display = "none";
+                        document.getElementById("main").style.display = "";
+                    }
+
+                    if (this.status == 200 && connected != 1) {
+                        connected = 1;
+                        document.getElementById("timerClock").style.color = "black";
+                    }
+                    else if(this.status != 200 && connected != 0){
+                        connected = 0;
+                        document.getElementById("timerClock").style.color = "red";
+                    }
+
+
+                    setTimeout(function () {
+                        fetch();
+                    }, 2000);
+                }
+            };
+            xmlhttp.open("GET", "monitor-fetch", true);
+            xmlhttp.send();
+        }
+        function getTime(time) {
+            var date = new Date(time * 1000);
+            return date.toISOString();
+        }
+        function onClick() {
+            var x = document.getElementById("navMenu");
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else {
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+    </script>
+
+</body></html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<!-- saved from url=(0027)http://192.168.0.101/limits -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./Smarter 28 LIMITES_files/w3.css">
+        <link rel="stylesheet" href="./Smarter 28 LIMITES_files/custom.css">
+        <title>Smarter 28 LIMITES</title>
+    </head>
+    <body>
+        <div class="w3-top">
+            <div class="w3-bar w3-green w3-card">
+                <a class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" href="javascript:void(0)" onclick="onClick()">MENU</a>
+            </div>
+        </div>
+        <div id="navMenu" class="w3-bar-block w3-white w3-hide w3-top" style="margin-top: 46px;">
+            <a href="http://192.168.0.101/" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">INÍCIO</a>
+            <a href="http://192.168.0.101/events" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">LOG DE EVENTOS</a>
+            <a href="http://192.168.0.101/realtime" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">LOG DE TEMPO REAL</a>
+            <a href="http://192.168.0.101/monitor" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">MONITORAMENTO</a>
+            <a href="http://192.168.0.101/limits" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">LIMITES</a>
+            <a href="http://192.168.0.101/update" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">ATUALIZAÇÃO DE FIRMWARE</a>
+            <a href="http://192.168.0.101/reset" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">REINICIAR</a>
+            <div class="w3-dropdown-hover">
+                <button class="w3-padding-large w3-button w3-white w3-hover-light-green" title="More">CONFIGURAÇÕES</button>
+                <div class="w3-dropdown-content w3-bar-block w3-card-4 w2-white">
+                    <a href="http://192.168.0.101/conn-config" class="w3-bar-item w3-button w3-hover-light-green" onclick="onClick()">Tipo de conexão</a>
+                    <a href="http://192.168.0.101/ocpp-config" class="w3-bar-item w3-button w3-hover-light-green" onclick="onClick()">Servidor OCPP</a>
+                    <a href="http://192.168.0.101/general-config" class="w3-bar-item w3-button w3-hover-light-green" onclick="onClick()">Geral</a>
+                    <a href="http://192.168.0.101/balancer-config" class="w3-bar-item w3-button w3-hover-light-green" onclick="onClick()">Balanceador</a>
+                </div>
+            </div>
+        </div>
+        <div class="w3-content" style="max-width: 2000px; margin-top: 46px;">
+            <div id="loading" class="loader" style="display: none;"></div>
+            <div id="main" style="margin-bottom: 100px;">
+                <header class="w3-container w3-dark-grey">
+                    <h5>Limites</h5>
+                </header>
+                <div class="w3-card-4 w3-margin">
+                    <header class="w3-container w3-light-grey">
+                        <h6>Data</h6>
+                    </header>
+                    <div class="w3-container w3-padding-16 w3-row">
+                        <div class="w3-card-4 w3-margin-bottom">
+                            <header class="w3-container w3-light-grey">
+                                <h6>Acesso Rápido</h6>
+                            </header>
+                            <div class="w3-container w3-padding-16">
+                                <div class="w3-bar">
+                                    <a id="btn-yesterday" class="w3-btn w3-bar-item w3-button w3-black" style="width: 33.3%;" href="http://192.168.0.101/limits?start=1708387200">Ontem</a>
+                                    <a id="btn-today" class="w3-btn w3-bar-item w3-button w3-teal" style="width: 33.3%;" href="http://192.168.0.101/limits?start=1708473600">Hoje</a>
+                                    <a id="btn-tomorrow" class="w3-btn w3-bar-item w3-button w3-red" style="width: 33.3%;" href="http://192.168.0.101/limits?start=1708560000">Amanhã</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w3-card-4 w3-margin-top">
+                            <header class="w3-container w3-light-grey">
+                                <h6>Customizado</h6>
+                            </header>
+                            <div class="w3-container w3-padding-16">
+                                <input type="date" id="date" name="date" onchange="onDateChanged(event);">
+                            </div>
+                            <a id="fetch-btn" class="w3-btn w3-block w3-green w3-hover-text-black" href="http://192.168.0.101/limits?start=1708473600">Buscar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="w3-container w3-center">
+                    <h2 id="title">Limites para 21/02/2024</h2>
+                    <div id="container"><div class="item largest"><div class="time start largest">00:00:00</div><div class="time end largest">23:59:59</div><div class="event largest gray">6600W<br>10A<span>Máximo suportado</span></div></div></div>
+                </div>
+            </div>
+        </div>
+    
+    <script>
+        window.onload = function () {
+            fetch(getParameterByName("start"));
+        };
+        function getParameterByName(name, url = window.location.href) {
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+        function fetch(start) {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var jsonObject = JSON.parse(this.responseText);
+                    var items = jsonObject.items;
+                    items.forEach((item) => {
+                        addItem(item.from, item.to, item.amp, item.watt, item.type, item.id);
+                    });
+                    document.getElementById("title").innerHTML = "Limites para " + getDate(jsonObject.start);
+                    document.getElementById('date').valueAsDate = new Date(jsonObject.start * 1000);
+                    document.getElementById('fetch-btn').href = "/limits?start=" + jsonObject.start;
+                    document.getElementById('btn-yesterday').href = "/limits?start=" + (jsonObject.today - 86400);
+                    document.getElementById('btn-today').href = "/limits?start=" + jsonObject.today;
+                    document.getElementById('btn-tomorrow').href = "/limits?start=" + (jsonObject.today + 86400);
+                    document.getElementById("loading").style.display = "none";
+                    document.getElementById("main").style.display = "";
+
+                    document.title = `Smarter ${jsonObject.uid} LIMITES`
+                }
+            };
+            if (start !== null) {
+                xmlhttp.open("GET", "limits-fetch?start=" + start, true);
+            } else {
+                xmlhttp.open("GET", "limits-fetch", true);
+            }
+            xmlhttp.send();
+        }
+        function addItem(from, to, amp, watt, type, id) {
+            var className, color;
+            var item = document.createElement("div");
+            var start = document.createElement("div");
+            var end = document.createElement("div");
+            var evt = document.createElement("div");
+            var span = document.createElement("span");
+            if ((to - from) > 43200) className = "largest";
+            else if ((to - from) > 21600) className = "large";
+            else if ((to - from) > 10800) className = "medium";
+            else className = "small";
+            if (type == 0) {
+                span.innerHTML = "ChargePointMaxProfile(ID=" + id + ")";
+                color = "pink";
+            } else if (type == 1) {
+                span.innerHTML = "TxDefaultProfile(ID=" + id + ")";
+                color = "green";
+            } else if (type == 2) {
+                span.innerHTML = "TxProfile(ID=" + id + ")";
+                color = "orange";
+            } else {
+                span.innerHTML = "Máximo suportado";
+                color = "gray";
+            }
+            item.className = "item " + className;
+            start.className = "time start " + className;
+            end.className = "time end " + className;
+            evt.className = "event " + className + " " + color;
+            start.innerHTML = getTime(from);
+            end.innerHTML = getTime(to);
+            evt.innerHTML = watt + "W<br />" + amp + "A";
+            evt.appendChild(span);
+            item.appendChild(start);
+            item.appendChild(end);
+            item.appendChild(evt);
+            document.getElementById("container").appendChild(item);
+        }
+        function getTime(time) {
+            var date = new Date(time * 1000);
+            return date.toISOString().slice(11, 19);
+        }
+        function getDate(time) {
+            var date = new Date(time * 1000);
+            var split = date.toISOString().split(/[-T]/) 
+            return [
+                split[2],
+                split[1],
+                split[0],
+            ].join('/');
+        }
+        function onDateChanged(e) {
+            var start = e.target.valueAsDate.getTime() / 1000;
+            document.getElementById('fetch-btn').href = "/limits?start=" + start;
+        }
+        function onClick() {
+            var x = document.getElementById("navMenu");
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else {
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+    </script>
+
+</body></html>

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<!-- saved from url=(0032)http://192.168.0.101/conn-config -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./Smarter 28 CONEXÃO_files/w3.css">
+        <link rel="stylesheet" href="./Smarter 28 CONEXÃO_files/custom.css">
+        <title>Smarter 28 CONEXÃO</title>
+    </head>
+    <body>
+        <div class="w3-top">
+            <div class="w3-bar w3-green w3-card">
+                <a class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" href="javascript:void(0)" onclick="onClick()">MENU</a>
+            </div>
+        </div>
+        <div id="navMenu" class="w3-bar-block w3-white w3-hide w3-top" style="margin-top: 46px;">
+            <a href="http://192.168.0.101/" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">INÍCIO</a>
+            <a href="http://192.168.0.101/events" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">LOG DE EVENTOS</a>
+            <a href="http://192.168.0.101/realtime" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">LOG DE TEMPO REAL</a>
+            <a href="http://192.168.0.101/monitor" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">MONITORAMENTO</a>
+            <a href="http://192.168.0.101/limits" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">LIMITES</a>
+            <a href="http://192.168.0.101/update" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">ATUALIZAÇÃO DE FIRMWARE</a>
+            <a href="http://192.168.0.101/reset" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">REINICIAR</a>
+            <div class="w3-dropdown-hover">
+                <button class="w3-padding-large w3-button" title="More">CONFIGURAÇÕES</button>
+                <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                    <a href="http://192.168.0.101/conn-config" class="w3-bar-item w3-button w3-hover-light-green" onclick="onClick()">Tipo de conexão</a>
+                    <a href="http://192.168.0.101/ocpp-config" class="w3-bar-item w3-button w3-hover-light-green" onclick="onClick()">Servidor OCPP</a>
+                    <a href="http://192.168.0.101/general-config" class="w3-bar-item w3-button w3-hover-light-green" onclick="onClick()">Geral</a>
+                    <a href="http://192.168.0.101/balancer-config" class="w3-bar-item w3-button w3-hover-light-green" onclick="onClick()">Balanceador</a>
+                </div>
+            </div>
+        </div>
+        <div class="w3-content" style="max-width: 2000px; margin-top: 46px;">
+            <div id="loading" class="loader" style="display: none;"></div>
+            <div id="main" style="margin-bottom: 100px;">
+                <header class="w3-container w3-dark-grey">
+                    <h5>Tipo de Conexão</h5>
+                </header>
+                <div class="w3-card-4 w3-margin">
+                    <header class="w3-container w3-light-grey w3-padding">
+                        <input type="radio" id="iface-wifi" name="iface">
+                        <label for="iface-wifi">Wi-Fi</label>
+                    </header>
+                    <div class="w3-container w3-padding-16">
+                        <div class="center">
+                            <label for="wi-fi-ssid">SSID:</label>
+                            <input class="input-expanded" type="text" id="wi-fi-ssid">
+                        </div>
+                        <div class="center">
+                            <label for="wi-fi-pass">Senha da Rede:</label>
+                            <input class="input-expanded" type="text" id="wi-fi-pass">
+                        </div>
+                        <div class="w3-card-4 w3-margin-top w3-margin-bottom">
+                            <header class="w3-container w3-light-grey">
+                                <h6>Tipo IP</h6>
+                            </header>
+                            <div class="w3-container w3-padding-16">
+                                <input type="radio" id="wi-fi-type-dhcp" name="wi-fi-type" onclick="updateWifiFields(true)">
+                                <label for="wi-fi-type-dhcp">DHCP</label>
+                                <br>
+                                <input type="radio" id="wi-fi-type-ip-fixo" name="wi-fi-type" onclick="updateWifiFields(false)">
+                                <label for="wi-fi-type-ip-fixo">IP Fixo</label>
+                            </div>
+                        </div>
+                        <div class="center">
+                            <label for="wi-fi-ip">IP Placa:</label>
+                            <input class="input-expanded" type="text" id="wi-fi-ip" disabled="">
+                        </div>
+                        <div class="center">
+                            <label for="wi-fi-dns">DNS:</label>
+                            <input class="input-expanded" type="text" id="wi-fi-dns" disabled="">
+                        </div>
+                        <div class="center">
+                            <label for="wi-fi-mask">Máscara:</label>
+                            <input class="input-expanded" type="text" id="wi-fi-mask" disabled="">
+                        </div>
+                        <div class="center">
+                            <label for="wi-fi-gate">Gateway:</label>
+                            <input class="input-expanded" type="text" id="wi-fi-gate" disabled="">
+                        </div>
+                    </div>
+                </div>
+                <div class="w3-card-4 w3-margin">
+                    <header class="w3-container w3-light-grey w3-padding">
+                        <input type="radio" id="iface-eth" name="iface">
+                        <label for="iface-eth">Ethernet</label>
+                    </header>
+                    <div class="w3-container w3-padding-16">
+                        <div class="w3-card-4 w3-margin-bottom">
+                            <header class="w3-container w3-light-grey">
+                                <h6>Tipo IP</h6>
+                            </header>
+                            <div class="w3-container w3-padding-16">
+                                <input type="radio" id="eth-type-dhcp" name="eth-type" onclick="updateEthFields(true)">
+                                <label for="eth-type-dhcp">DHCP</label>
+                                <br>
+                                <input type="radio" id="eth-type-ip-fixo" name="eth-type" onclick="updateEthFields(false)">
+                                <label for="eth-type-ip-fixo">IP Fixo</label>
+                            </div>
+                        </div>
+                        <div class="center">
+                            <label for="eth-ip">IP Placa:</label>
+                            <input class="input-expanded" type="text" id="eth-ip" disabled="">
+                        </div>
+                        <div class="center">
+                            <label for="eth-dns">DNS:</label>
+                            <input class="input-expanded" type="text" id="eth-dns" disabled="">
+                        </div>
+                        <div class="center">
+                            <label for="eth-mask">Máscara:</label>
+                            <input class="input-expanded" type="text" id="eth-mask" disabled="">
+                        </div>
+                        <div class="center">
+                            <label for="eth-gate">Gateway:</label>
+                            <input class="input-expanded" type="text" id="eth-gate" disabled="">
+                        </div>
+                    </div>
+                </div>
+                <div id="errors" class="w3-card-4 w3-margin" style="display: none;">
+                    <header class="w3-container w3-red">
+                        <h6>Erros encontrados</h6>
+                    </header>
+                    <div class="w3-container w3-padding-16">
+                        <div style="color: red;">
+                            <div id="wifi-ssid-error" style="display: none;">"SSID" inválido (Wi-Fi)</div>
+                            <div id="wifi-pass-error" style="display: none;">"Senha da Rede" inválido (Wi-Fi)</div>
+                            <div id="wifi-type-error" style="display: none;">"Tipo IP" inválido (Wi-Fi)</div>
+                            <div id="wifi-ip-error" style="display: none;">"IP Placa" inválido (Wi-Fi)</div>
+                            <div id="wifi-dns-error" style="display: none;">"DNS" inválido (Wi-Fi)</div>
+                            <div id="wifi-mask-error" style="display: none;">"Máscara" inválido (Wi-Fi)</div>
+                            <div id="wifi-gate-error" style="display: none;">"Gateway" inválido (Wi-Fi)</div>
+                            <div id="eth-type-error" style="display: none;">"Tipo IP" inválido (Ethernet)</div>
+                            <div id="eth-ip-error" style="display: none;">"IP Placa" inválido (Ethernet)</div>
+                            <div id="eth-dns-error" style="display: none;">"DNS" inválido (Ethernet)</div>
+                            <div id="eth-mask-error" style="display: none;">"Máscara" inválido (Ethernet)</div>
+                            <div id="eth-gate-error" style="display: none;">"Gateway" inválido (Ethernet)</div>
+                            <div id="iface-error" style="display: none;">Nenhuma interface selecionada</div>
+                        </div>
+                    </div>
+                </div>
+                <button id="save-btn" class="w3-btn w3-block w3-green w3-bottom w3-large w3-hover-text-black" onclick="save();">Salvar</button>
+            </div>
+        </div>
+    
+    <script>
+        window.onload = function () {
+            fetch();
+        };
+        function updateWifiFields(disabled) {
+            document.getElementById("wi-fi-ip").disabled = disabled;
+            document.getElementById("wi-fi-dns").disabled = disabled;
+            document.getElementById("wi-fi-mask").disabled = disabled;
+            document.getElementById("wi-fi-gate").disabled = disabled;
+        }
+        function updateEthFields(disabled) {
+            document.getElementById("eth-ip").disabled = disabled;
+            document.getElementById("eth-dns").disabled = disabled;
+            document.getElementById("eth-mask").disabled = disabled;
+            document.getElementById("eth-gate").disabled = disabled;
+        }
+        function fetch() {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var jsonObject = JSON.parse(this.responseText);
+                    document.title = `Smarter ${jsonObject.uid} CONEXÃO`
+                    document.getElementById("eth-ip").value = jsonObject.ethStaticIP;
+                    document.getElementById("eth-dns").value = jsonObject.ethStaticDNS;
+                    document.getElementById("eth-mask").value = jsonObject.ethStaticMask;
+                    document.getElementById("eth-gate").value = jsonObject.ethStaticGateway;
+                    if (jsonObject.ethIsStatic === true) {
+                        document.getElementById("eth-type-ip-fixo").checked = true;
+                        updateEthFields(false);
+                    } else {
+                        document.getElementById("eth-type-dhcp").checked = true;
+                        updateEthFields(true);
+                    }
+                    document.getElementById("wi-fi-ssid").value = jsonObject.wifiSSID;
+                    document.getElementById("wi-fi-pass").value = jsonObject.wifiPass;
+                    document.getElementById("wi-fi-ip").value = jsonObject.wifiStaticIP;
+                    document.getElementById("wi-fi-dns").value = jsonObject.wifiStaticDNS;
+                    document.getElementById("wi-fi-mask").value = jsonObject.wifiStaticMask;
+                    document.getElementById("wi-fi-gate").value = jsonObject.wifiStaticGateway;
+                    if (jsonObject.wifiIsStatic === true) {
+                        document.getElementById("wi-fi-type-ip-fixo").checked = true;
+                        updateWifiFields(false);
+                    } else {
+                        document.getElementById("wi-fi-type-dhcp").checked = true;
+                        updateWifiFields(true);
+                    }
+                    if (jsonObject.isEth === true) {
+                        document.getElementById("iface-eth").checked = true;
+                    } else {
+                        document.getElementById("iface-wifi").checked = true;
+                    }
+                    document.getElementById("loading").style.display = "none";
+                    document.getElementById("main").style.display = "";
+                }
+            };
+            xmlhttp.open("GET", "conn-config-fetch", true);
+            xmlhttp.send();
+        }
+        function validateIpAddress(address) {
+            return /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(address);
+        }
+        function validate() {
+            var valid = true;
+        	document.getElementById("wifi-ssid-error").style.display = "none";
+            document.getElementById("wifi-pass-error").style.display = "none";
+            document.getElementById("wifi-type-error").style.display = "none";
+            document.getElementById("wifi-ip-error").style.display = "none";
+            document.getElementById("wifi-dns-error").style.display = "none";
+            document.getElementById("wifi-mask-error").style.display = "none";
+            document.getElementById("wifi-gate-error").style.display = "none";
+            document.getElementById("eth-type-error").style.display = "none";
+            document.getElementById("eth-ip-error").style.display = "none";
+            document.getElementById("eth-dns-error").style.display = "none";
+            document.getElementById("eth-mask-error").style.display = "none";
+            document.getElementById("eth-gate-error").style.display = "none";
+            document.getElementById("iface-error").style.display = "none";
+            document.getElementById("errors").style.display = "none";
+            if (document.getElementById("wi-fi-ssid").value.length <= 0) {
+            	document.getElementById("wifi-ssid-error").style.display = "";
+                valid = false;
+            }
+            if (document.getElementById("wi-fi-pass").value.length <= 0) {
+            	document.getElementById("wifi-pass-error").style.display = "";
+                valid = false;
+            }
+            if (!document.getElementById("wi-fi-type-ip-fixo").checked && !document.getElementById("wi-fi-type-dhcp").checked) {
+            	document.getElementById("wifi-type-error").style.display = "";
+                valid = false;
+            }
+            if (document.getElementById("wi-fi-type-ip-fixo").checked) {
+                if (!validateIpAddress(document.getElementById("wi-fi-ip").value)) {
+                    document.getElementById("wifi-ip-error").style.display = "";
+                    valid = false;
+                }
+                if (!validateIpAddress(document.getElementById("wi-fi-dns").value)) {
+                    document.getElementById("wifi-dns-error").style.display = "";
+                    valid = false;
+                }
+                if (!validateIpAddress(document.getElementById("wi-fi-mask").value)) {
+                    document.getElementById("wifi-mask-error").style.display = "";
+                    valid = false;
+                }
+                if (!validateIpAddress(document.getElementById("wi-fi-gate").value)) {
+                    document.getElementById("wifi-gate-error").style.display = "";
+                    valid = false;
+                }
+            }
+            if (!document.getElementById("eth-type-ip-fixo").checked && !document.getElementById("eth-type-dhcp").checked) {
+            	document.getElementById("eth-type-error").style.display = "";
+                valid = false;
+            }
+            if (document.getElementById("eth-type-ip-fixo").checked) {
+                if (!validateIpAddress(document.getElementById("eth-ip").value)) {
+                    document.getElementById("eth-ip-error").style.display = "";
+                    valid = false;
+                }
+                if (!validateIpAddress(document.getElementById("eth-dns").value)) {
+                    document.getElementById("eth-dns-error").style.display = "";
+                    valid = false;
+                }
+                if (!validateIpAddress(document.getElementById("eth-mask").value)) {
+                    document.getElementById("eth-mask-error").style.display = "";
+                    valid = false;
+                }
+                if (!validateIpAddress(document.getElementById("eth-gate").value)) {
+                    document.getElementById("eth-gate-error").style.display = "";
+                    valid = false;
+                }
+            }
+            if (!document.getElementById("iface-wifi").checked && !document.getElementById("iface-eth").checked) {
+            	document.getElementById("iface-error").style.display = "";
+                valid = false;
+            }
+            if (!valid) {
+                document.getElementById("errors").style.display = "";
+            }
+            return valid;
+        }
+        function save() {
+            if (!validate()) {
+                scroll();
+                return;
+            }
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    resetPrompt();
+                    document.getElementById("save-btn").innerHTML = "Salvo!";
+                    setTimeout(function () {
+                        document.getElementById("save-btn").innerHTML = "Salvar";
+                        document.getElementById("save-btn").disabled = false;
+                    }, 1000);
+                }
+            };
+            xmlhttp.open("POST", "conn-config-save");
+            xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xmlhttp.send(
+                JSON.stringify({
+                    wifiSSID: document.getElementById("wi-fi-ssid").value,
+                    wifiPass: document.getElementById("wi-fi-pass").value,
+                    wifiStaticIP: document.getElementById("wi-fi-ip").value,
+                    wifiStaticDNS: document.getElementById("wi-fi-dns").value,
+                    wifiStaticMask: document.getElementById("wi-fi-mask").value,
+                    wifiStaticGateway: document.getElementById("wi-fi-gate").value,
+                    wifiIsStatic: document.getElementById("wi-fi-type-ip-fixo").checked,
+                    ethStaticIP: document.getElementById("eth-ip").value,
+                    ethStaticDNS: document.getElementById("eth-dns").value,
+                    ethStaticMask: document.getElementById("eth-mask").value,
+                    ethStaticGateway: document.getElementById("eth-gate").value,
+                    ethIsStatic: document.getElementById("eth-type-ip-fixo").checked,
+                    isEth: document.getElementById("iface-eth").checked,
+                })
+            );
+            document.getElementById("save-btn").innerHTML = "Salvando...";
+            document.getElementById("save-btn").disabled = true;
+        }
+        function onClick() {
+            var x = document.getElementById("navMenu");
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else {
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+        function scroll() {
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+        function resetPrompt() {
+            if (confirm("As alterações foram salvas com sucesso. Deseja reiniciar?") == true) {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.open("GET", "reset-fetch", true);
+                xmlhttp.send();
+            }
+        }
+    </script>
+
+</body></html>

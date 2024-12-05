@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<!-- saved from url=(0035)http://192.168.0.101/general-config -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./Smarter 28 GERAL_files/w3.css">
+        <link rel="stylesheet" href="./Smarter 28 GERAL_files/custom.css">
+        <title>Smarter 28 GERAL</title>
+    </head>
+    <body>
+        <div class="w3-top">
+            <div class="w3-bar w3-green w3-card">
+                <a class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" href="javascript:void(0)" onclick="onClick()">MENU</a>
+            </div>
+        </div>
+        <div id="navMenu" class="w3-bar-block w3-white w3-hide w3-top" style="margin-top: 46px;">
+            <a href="http://192.168.0.101/" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">INÍCIO</a>
+            <a href="http://192.168.0.101/events" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">LOG DE EVENTOS</a>
+            <a href="http://192.168.0.101/realtime" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">LOG DE TEMPO REAL</a>
+            <a href="http://192.168.0.101/monitor" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">MONITORAMENTO</a>
+            <a href="http://192.168.0.101/limits" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">LIMITES</a>
+            <a href="http://192.168.0.101/update" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">ATUALIZAÇÃO DE FIRMWARE</a>
+            <a href="http://192.168.0.101/reset" class="w3-bar-item w3-button w3-padding-large w3-hover-light-green" onclick="onClick()">REINICIAR</a>
+            <div class="w3-dropdown-hover">
+                <button class="w3-padding-large w3-button w3-white w3-hover-light-green" title="More">CONFIGURAÇÕES</button>
+                <div class="w3-dropdown-content w3-bar-block w3-card-4 w3-white">
+                    <a href="http://192.168.0.101/conn-config" class="w3-bar-item w3-button w3-hover-light-green" onclick="onClick()">Tipo de conexão</a>
+                    <a href="http://192.168.0.101/ocpp-config" class="w3-bar-item w3-button w3-hover-light-green" onclick="onClick()">Servidor OCPP</a>
+                    <a href="http://192.168.0.101/general-config" class="w3-bar-item w3-button w3-hover-light-green" onclick="onClick()">Geral</a>
+                    <a href="http://192.168.0.101/balancer-config" class="w3-bar-item w3-button w3-hover-light-green" onclick="onClick()">Balanceador</a>
+                </div>
+            </div>
+        </div>
+        <div class="w3-content" style="max-width: 2000px; margin-top: 46px;">
+            <div id="loading" class="loader" style="display: none;"></div>
+            <div id="main" style="margin-bottom: 100px;">
+                <header class="w3-container w3-dark-grey">
+                    <h5>Geral</h5>
+                </header>
+                <div class="w3-card-4 w3-margin">
+                    <header class="w3-container w3-light-grey">
+                        <h6>Número de Fases</h6>
+                    </header>
+                    <div class="w3-container w3-padding-16 w3-row">
+                        <div class="w3-col m6 l6">
+                            <input type="radio" id="phases-mono" name="phases">
+                            <label for="phases-mono">Monofásico</label>
+                        </div>
+                        <div class="w3-col m6 l6">
+                            <input type="radio" id="phases-tri" name="phases">
+                            <label for="phases-tri">Trifásico</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="w3-card-4 w3-margin">
+                    <header class="w3-container w3-light-grey">
+                        <h6>Tensão da Rede</h6>
+                    </header>
+                    <div class="w3-container w3-padding-16 w3-row">
+                        <div class="w3-col m6 l6 s6">
+                            <input type="radio" id="line-voltage-127" name="line-voltage">
+                            <label for="line-voltage-127">127V</label>
+                        </div>
+                        <div class="w3-col m6 l6 s6">
+                            <input type="radio" id="line-voltage-220" name="line-voltage">
+                            <label for="line-voltage-220">220V</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="w3-card-4 w3-margin">
+                    <header class="w3-container w3-light-grey">
+                        <h6>Liberar Tomada Quando Off-Line</h6>
+                    </header>
+                    <div class="w3-container w3-padding-16 w3-row">
+                        <div class="w3-col m6 l6 s6">
+                            <input type="radio" id="unlock-yes" name="unlock">
+                            <label for="unlock-yes">Sim</label>
+                        </div>
+                        <div class="w3-col m6 l6 s6">
+                            <input type="radio" id="unlock-no" name="unlock">
+                        <label for="unlock-no">Não</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="w3-card-4 w3-margin">
+                    <header class="w3-container w3-light-grey">
+                        <h6>Parar Transação na Desconexão</h6>
+                    </header>
+                    <div class="w3-container w3-padding-16 w3-row">
+                        <div class="w3-col m6 l6 s6">
+                            <input type="radio" id="stop-yes" name="stop">
+                            <label for="stop-yes">Sim</label>
+                        </div>
+                        <div class="w3-col m6 l6 s6">
+                            <input type="radio" id="stop-no" name="stop">
+                            <label for="stop-no">Não</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="w3-card-4 w3-margin">
+                    <header class="w3-container w3-light-grey">
+                        <h6>Sniffer/Bypass</h6>
+                    </header>
+                    <div class="w3-container w3-padding-16">
+                        <div class="w3-card-4">
+                            <header class="w3-container w3-light-grey">
+                                <h6>Habilitar Sniffer</h6>
+                            </header>
+                            <div class="w3-container w3-padding-16 w3-row">
+                                <div class="w3-col m6 l6 s6">
+                                    <input type="radio" id="sniffer-yes" name="sniffer" onclick="check(&#39;sniffer&#39;);">
+                                    <label for="sniffer-yes">Sim</label>
+                                </div>
+                                <div class="w3-col m6 l6 s6">
+                                    <input type="radio" id="sniffer-no" name="sniffer">
+                                    <label for="sniffer-no">Não</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w3-card-4 w3-margin-top w3-margin-bottom">
+                            <header class="w3-container w3-light-grey">
+                                <h6>Habilitar Bypass</h6>
+                            </header>
+                            <div class="w3-container w3-padding-16 w3-row">
+                                <div class="w3-col m6 l6 s6">
+                                    <input type="radio" id="bypass-yes" name="bypass" onclick="check(&#39;bypass&#39;);">
+                                    <label for="bypass-yes">Sim</label>
+                                </div>
+                                <div class="w3-col m6 l6 s6">
+                                    <input type="radio" id="bypass-no" name="bypass">
+                                    <label for="bypass-no">Não</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="center">
+                            <label for="deb-start">Debounce Início:</label>
+                            <input class="input-expanded" type="number" id="deb-start">
+                            <span>seg</span>
+                        </div>
+                        <div class="center">
+                            <label for="deb-stop">Debounce Fim:</label>
+                            <input class="input-expanded" type="number" id="deb-stop">
+                            <span>seg</span>
+                        </div>
+                        <div class="center">
+                            <label for="curr-start">Corrente Início:</label>
+                            <input class="input-expanded" type="number" id="curr-start">
+                            <span>A</span>
+                        </div>
+                        <div class="center">
+                            <label for="curr-stop">Corrente Fim:</label>
+                            <input class="input-expanded" type="number" id="curr-stop">
+                            <span>A</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="w3-margin">
+                    <div class="center">
+                        <label for="general-max-current">Corrente Máxima:</label>
+                        <input class="input-expanded" type="number" id="general-max-current">
+                        <span>A</span>
+                    </div>
+                    <div class="center">
+                        <label for="general-vendor">Vendor ID:</label>
+                        <input class="input-expanded" type="text" id="general-vendor">
+                    </div>
+                    <div class="center">
+                        <label for="general-product">Product ID:</label>
+                        <input class="input-expanded" type="text" id="general-product">
+                    </div>
+                    <div class="center">
+                        <label for="general-meter">Intervalo Meter Values:</label>
+                        <input class="input-expanded" type="number" id="general-meter">
+                        <span>seg</span>
+                    </div>
+                    <div class="center">
+                        <label for="general-id">ChargeBoxID:</label>
+                        <input class="input-expanded" type="text" id="general-id">
+                    </div>
+                    <div class="center">
+                        <label for="ping-interval">Intervalo Ping Pong</label><br>
+                        <select class="input-expanded" id="ping-interval">
+                            <option value="1">1 minuto</option>
+                            <option value="2">2 minutos</option>
+                            <option value="3">3 minutos</option>
+                            <option value="4">4 minutos</option>
+                            <option value="5">5 minutos</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="errors" class="w3-card-4 w3-margin" style="display: none;">
+                    <header class="w3-container w3-red">
+                        <h6>Erros encontrados</h6>
+                    </header>
+                    <div class="w3-container w3-padding-16">
+                        <div style="color: red;">
+                            <div id="phases-error" style="display: none;">"Número de Fases" inválido</div>
+                            <div id="unlock-error" style="display: none;">"Liberar Tomada Quando Off-Line" inválido</div>
+                            <div id="stop-error" style="display: none;">"Parar Transação na Desconexão" inválido</div>
+                            <div id="sniffer-error" style="display: none;">"Habilitar Sniffer" inválido</div>
+                            <div id="bypass-error" style="display: none;">"Habilitar Bypass" inválido</div>
+                            <div id="vendor-error" style="display: none;">"Vendor ID" inválido</div>
+                            <div id="product-error" style="display: none;">"Product ID" inválido</div>
+                            <div id="meter-error" style="display: none;">"Intervalo Meter Values" inválido</div>
+                            <div id="id-error" style="display: none;">"ChargeBoxID" inválido</div>
+                            <div id="ping-error" style="display: none;">"Intervalo Ping Pong" inválido</div>
+                            <div id="line-voltage-error" style="display: none;">"Tensão da Rede" inválido</div>
+                            <div id="max-current-error" style="display: none;">"Corrente Máxima" inválido (deve ser maior ou igual a 6)</div>
+                            <div id="deb-start-error" style="display: none;">"Debounce Início" inválido</div>
+                            <div id="deb-stop-error" style="display: none;">"Debounce Fim" inválido</div>
+                            <div id="curr-start-error" style="display: none;">"Corrente Início" inválido</div>
+                            <div id="curr-stop-error" style="display: none;">"Corrente Fim" inválido</div>
+                            <div id="sniffer-rfid-bypass-error" style="display: none;">Apenas um item pode ser selecionado por vez (Sniffer/RFID/Bypass)</div>
+                            <div id="remote-error" style="display: none;"></div>
+                        </div>
+                    </div>
+                </div>
+                <button id="save-btn" class="w3-btn w3-block w3-green w3-bottom w3-large w3-hover-text-black" onclick="save();">Salvar</button>
+            </div>
+        </div>
+    
+    <script>
+        window.onload = function () {
+            fetch();
+        };
+        function fetch() {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var jsonObject = JSON.parse(this.responseText);
+                    document.title = `Smarter ${jsonObject.uid} GERAL`
+                    if (jsonObject.freeSocket === true) {
+                        document.getElementById("unlock-yes").checked = true;
+                    } else {
+                        document.getElementById("unlock-no").checked = true;
+                    }
+                    if (jsonObject.threePhase === true) {
+                        document.getElementById("phases-tri").checked = true;
+                    } else {
+                        document.getElementById("phases-mono").checked = true;
+                    }
+                    if (jsonObject.lineVoltage === true) {
+                        document.getElementById("line-voltage-220").checked = true;
+                    } else {
+                        document.getElementById("line-voltage-127").checked = true;
+                    }
+                    if (jsonObject.stopOnDisconnect === true) {
+                        document.getElementById("stop-yes").checked = true;
+                    } else {
+                        document.getElementById("stop-no").checked = true;
+                    }
+                    if (jsonObject.sniffer === true) {
+                        document.getElementById("sniffer-yes").checked = true;
+                    } else {
+                        document.getElementById("sniffer-no").checked = true;
+                    }
+                    if (jsonObject.bypass === true) {
+                        document.getElementById("bypass-yes").checked = true;
+                    } else {
+                        document.getElementById("bypass-no").checked = true;
+                    }
+                    document.getElementById("general-vendor").value = jsonObject.cpVendor;
+                    document.getElementById("general-product").value = jsonObject.cpModel;
+                    document.getElementById("general-meter").value = jsonObject.meterValueInterval;
+                    document.getElementById("general-id").value = jsonObject.chargeBoxId;
+                    document.getElementById("ping-interval").value = jsonObject.pingInterval;
+                    document.getElementById("general-max-current").value = jsonObject.maxCurrent;
+                    document.getElementById("deb-start").value = jsonObject.debStart;
+                    document.getElementById("deb-stop").value = jsonObject.debStop;
+                    document.getElementById("curr-start").value = jsonObject.currStart;
+                    document.getElementById("curr-stop").value = jsonObject.currStop;
+                    document.getElementById("loading").style.display = "none";
+                    document.getElementById("main").style.display = "";
+                }
+            };
+            xmlhttp.open("GET", "general-config-fetch", true);
+            xmlhttp.send();
+        }
+        function validate() {
+        	var valid = true;
+        	document.getElementById("unlock-error").style.display = "none";
+            document.getElementById("phases-error").style.display = "none";
+            document.getElementById("stop-error").style.display = "none";
+            document.getElementById("sniffer-error").style.display = "none";
+            document.getElementById("bypass-error").style.display = "none";
+            document.getElementById("vendor-error").style.display = "none";
+            document.getElementById("product-error").style.display = "none";
+            document.getElementById("meter-error").style.display = "none";
+            document.getElementById("id-error").style.display = "none";
+            document.getElementById("ping-error").style.display = "none";
+            document.getElementById("line-voltage-error").style.display = "none";
+            document.getElementById("max-current-error").style.display = "none";
+            document.getElementById("deb-start-error").style.display = "none";
+            document.getElementById("deb-stop-error").style.display = "none";
+            document.getElementById("curr-start-error").style.display = "none";
+            document.getElementById("curr-stop-error").style.display = "none";
+            document.getElementById("sniffer-rfid-bypass-error").style.display = "none";
+            document.getElementById("remote-error").style.display = "none";
+            document.getElementById("errors").style.display = "none";
+        	if (!document.getElementById("unlock-yes").checked && !document.getElementById("unlock-no").checked) {
+            	document.getElementById("unlock-error").style.display = "";
+                valid = false;
+            }
+            if (!document.getElementById("phases-tri").checked && !document.getElementById("phases-mono").checked) {
+            	document.getElementById("phases-error").style.display = "";
+                valid = false;
+            }
+            if (!document.getElementById("line-voltage-127").checked && !document.getElementById("line-voltage-220").checked) {
+            	document.getElementById("line-voltage-error").style.display = "";
+                valid = false;
+            }
+            if (!document.getElementById("stop-yes").checked && !document.getElementById("stop-no").checked) {
+            	document.getElementById("stop-error").style.display = "";
+                valid = false;
+            }
+            if (!document.getElementById("sniffer-yes").checked && !document.getElementById("sniffer-no").checked) {
+            	document.getElementById("sniffer-error").style.display = "";
+                valid = false;
+            }
+            if (!document.getElementById("bypass-yes").checked && !document.getElementById("bypass-no").checked) {
+            	document.getElementById("bypass-error").style.display = "";
+                valid = false;
+            }
+            if (document.getElementById("general-vendor").value.length <= 0) {
+            	document.getElementById("vendor-error").style.display = "";
+                valid = false;
+            }
+            if (document.getElementById("general-product").value.length <= 0) {
+            	document.getElementById("product-error").style.display = "";
+                valid = false;
+            }
+            if (document.getElementById("general-meter").value <= 0) {
+            	document.getElementById("meter-error").style.display = "";
+                valid = false;
+            }
+            if (document.getElementById("general-id").value.length <= 0) {
+            	document.getElementById("id-error").style.display = "";
+                valid = false;
+            }
+            if (document.getElementById("ping-interval").value < 1 || document.getElementById("ping-interval").value > 5) {
+            	document.getElementById("ping-error").style.display = "";
+                valid = false;
+            }
+            if (document.getElementById("general-max-current").value < 6) {
+            	document.getElementById("max-current-error").style.display = "";
+                valid = false;
+            }
+            if (document.getElementById("deb-start").value <= 0) {
+            	document.getElementById("deb-start-error").style.display = "";
+                valid = false;
+            }
+            if (document.getElementById("deb-stop").value <= 0) {
+            	document.getElementById("deb-stop-error").style.display = "";
+                valid = false;
+            }
+            if (document.getElementById("curr-start").value <= 0) {
+            	document.getElementById("curr-start-error").style.display = "";
+                valid = false;
+            }
+            if (document.getElementById("curr-stop").value <= 0) {
+            	document.getElementById("curr-stop-error").style.display = "";
+                valid = false;
+            }
+            var count = 0;
+            if (document.getElementById("bypass-yes").checked) {
+            	count++;
+            }
+            if (document.getElementById("sniffer-yes").checked) {
+            	count++;
+            }
+            if (count > 1) {
+            	document.getElementById("sniffer-rfid-bypass-error").style.display = "";
+                valid = false;
+            }
+            if (!valid) {
+                document.getElementById("errors").style.display = "";
+            }
+            return valid;
+        }
+        function save() {
+            if (!validate()) {
+                scroll();
+                return;
+            }
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4) {
+                    if (this.status == 200) {
+                        resetPrompt();
+                        document.getElementById("save-btn").innerHTML = "Salvo!";
+                        setTimeout(function () {
+                            document.getElementById("save-btn").innerHTML = "Salvar";
+                            document.getElementById("save-btn").disabled = false;
+                        }, 1000);
+                    } else if (this.status == 400) {
+                        var jsonObject = JSON.parse(this.responseText);
+                        document.getElementById("remote-error").innerHTML = jsonObject.error;
+                        document.getElementById("save-btn").innerHTML = "Salvar";
+                        document.getElementById("save-btn").disabled = false;
+                        document.getElementById("remote-error").style.display = "";
+                        document.getElementById("errors").style.display = "";
+                    }
+                }
+            };
+            xmlhttp.open("POST", "general-config-save");
+            xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xmlhttp.send(
+                JSON.stringify({
+                    freeSocket: document.getElementById("unlock-yes").checked,
+                    threePhase: document.getElementById("phases-tri").checked,
+                    stopOnDisconnect: document.getElementById("stop-yes").checked,
+                    sniffer: document.getElementById("sniffer-yes").checked,
+                    bypass: document.getElementById("bypass-yes").checked,
+                    cpVendor: document.getElementById("general-vendor").value,
+                    cpModel: document.getElementById("general-product").value,
+                    meterValueInterval: document.getElementById("general-meter").value,
+                    chargeBoxId: document.getElementById("general-id").value,
+                    pingInterval: document.getElementById("ping-interval").value,
+                    lineVoltage: document.getElementById("line-voltage-220").checked,
+                    maxCurrent: document.getElementById("general-max-current").value,
+                    debStart: document.getElementById("deb-start").value,
+                    debStop: document.getElementById("deb-stop").value,
+                    currStart: document.getElementById("curr-start").value,
+                    currStop: document.getElementById("curr-stop").value,
+                })
+            );
+            document.getElementById("save-btn").innerHTML = "Salvando...";
+            document.getElementById("save-btn").disabled = true;
+        }
+        function onClick() {
+            var x = document.getElementById("navMenu");
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else {
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+        function scroll() {
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+        function check(radio) {
+            if (radio === "bypass") {
+                document.getElementById("sniffer-no").checked = true;
+            } else if (radio == "sniffer") {
+                document.getElementById("bypass-no").checked = true;
+            }
+        }
+        function resetPrompt() {
+            if (confirm("As alterações foram salvas com sucesso. Deseja reiniciar?") == true) {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.open("GET", "reset-fetch", true);
+                xmlhttp.send();
+            }
+        }
+    </script>
+
+</body></html>
